@@ -17,3 +17,28 @@ country_codes.each do |code|
   # save new code
   new_code.save
 end
+
+
+
+puts 'Creating 10 fake users...'
+10.times do
+  user = User.new(
+    email:    Faker::Internet.email,
+    name:   Faker::Movies::StarWars.character,
+    country_code:  rand(1..50),
+    password: Faker::Code
+  )
+  user.save!
+  10.times do
+    storage = Storage.new(
+        user_id: user.id,
+        name: Faker::Name.first_name,
+        sqm: rand(0..200),
+        address: Faker::Address.secondary_address,
+        price: rand(100.2...8000.1),
+        photo: "https://picsum.photos/200/300"
+      )
+  end
+end
+puts 'Finished!'
+
