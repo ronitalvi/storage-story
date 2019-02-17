@@ -34,8 +34,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.string :name
       t.string :photo
-      t.intager :phone_number
-      t.intager :area_code
+      t.integer :phone_number
+      t.integer :area_code
       t.string :country_code
 
       t.timestamps null: false
