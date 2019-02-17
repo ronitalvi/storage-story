@@ -55,6 +55,7 @@ GEM
     builder (3.2.3)
     byebug (10.0.2)
     coderay (1.1.2)
+    colorize (0.8.1)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     devise (4.6.1)
@@ -202,6 +203,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap
   bootstrap-sass (~> 3.3)
+  colorize
   devise
   dotenv-rails
   faker
