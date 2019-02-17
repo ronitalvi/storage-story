@@ -9,9 +9,9 @@
 # url to codes json
 url = 'https://gist.githubusercontent.com/Goles/3196253/raw/9ca4e7e62ea5ad935bb3580dc0a07d9df033b451/CountryCodes.json'
 # get the file and parse it
-codes = JSON.parse(open(url).read)
+country_codes = JSON.parse(open(url).read)
 # go through the elements
-codes.each do |code|
+country_codes.each do |code|
   # create new code with element info
   new_code = Code.new(code)
   # save new code
