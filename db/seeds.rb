@@ -18,7 +18,12 @@ country_codes.each do |code|
   new_code.save
 end
 
-
+puts 'Destroying all storage'
+Storage.destroy_all
+puts 'the storage are destroyed bro'
+puts 'Destroying all users'
+User.destroy_all
+puts 'the User are destroyed bro'
 
 puts 'Creating 10 fake users...'
 10.times do
@@ -26,18 +31,20 @@ puts 'Creating 10 fake users...'
     email:    Faker::Internet.email,
     name:   Faker::Movies::StarWars.character,
     country_code:  rand(1..50),
-    password: Faker::Code
+    password: "123456"
   )
   user.save!
-  10.times do
+  rand(1..5).times do
     storage = Storage.new(
         user_id: user.id,
         name: Faker::Name.first_name,
         sqm: rand(0..200),
+        description: Faker::Movies::StarWars.quote,
         address: Faker::Address.secondary_address,
         price: rand(100.2...8000.1),
         photo: "https://picsum.photos/200/300"
       )
+    storage.save!
   end
 end
 puts 'Finished!'
