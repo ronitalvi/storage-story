@@ -11,4 +11,6 @@ class User < ApplicationRecord
   ## took it out name validaton
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
+
+ acts_as_messageable
 end

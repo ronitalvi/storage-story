@@ -1,0 +1,22 @@
+
+
+<% @messages.each do |message| %>
+
+<table>
+  <thead>
+    <tr>
+      <td>description</td>
+      <td>booking id</td>
+      <td>user id</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= message.user_id %></td>
+      <td><%= message.booking_id %></td>
+      <%= message.description %>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<% end -%>
