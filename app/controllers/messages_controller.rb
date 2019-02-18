@@ -4,7 +4,8 @@ class MessagesController < ApplicationController
   end
 
   def new
-     @booking = Booking.find(params[:booking_id])
+    @booking = Booking.find(params[:booking_id])
+
     @message = Message.new
   end
 

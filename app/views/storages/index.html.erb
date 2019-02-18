@@ -24,6 +24,7 @@ index.html.erb
             <td><%= storage.name %></td>
             <td><%= storage.photo %></td>
             <td><%= storage.sqm %></td>
+            <td><%= link_to 'message',  new_booking_message_path(storage.user_id) %></td>
 
             <td><%= link_to 'Show', storage %></td>
 

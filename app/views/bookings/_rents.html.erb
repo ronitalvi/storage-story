@@ -19,6 +19,7 @@
           <td><%= booking.storage.user == current_user ? '<strong>You</strong>' : booking.storage.user.name %></td>
           <td><%= booking.approved ? 'approved' : 'pending' %></td>
           <td><%= booking.storage.user.email %></td>
+          <td><%= link_to 'message',  new_booking_message_path(booking) %></td>
         </tr>
       <% end %>
       <% end %>
