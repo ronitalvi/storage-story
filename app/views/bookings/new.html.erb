@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <strong>Address:</strong>
+      <%= @storage.address %>
+      <strong>name:</strong>
+      <%= @storage.name %>
+      <strong>description:</strong>
+      <%= @storage.description %>
+      <strong>sqm:</strong>
+      <%= @storage.sqm %>
+      <p>m2</p>
+      <strong>price:</strong>
+      <%= @storage.price %>
+      <strong>photo:</strong>
+      <%= image_tag(@storage.photo, alt: "Storage photo" ) %>
+      <p>
+        <strong>User:</strong>
+        <%= @storage.user[:name] %>
+      </p>
+    <div class='mt_5'>
+      <%= simple_form_for @booking, url: storage_bookings_path(@storage.id) do |f| %>
+        <%= f.input :start_date, as: :date, html5: true, label: 'Start from', error: 'This field is mandatory' %>
+        <%= f.input :end_date, as: :date, html5: true, label: 'End on', error: 'This field is mandatory' %>
+        <%= f.button :submit %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

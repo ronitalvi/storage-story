@@ -14,15 +14,20 @@
    <strong>photo:</strong>
   <%= image_tag(@storage.photo, alt: "Storage photo" ) %>
 
-
 <p>
   <strong>User:</strong>
   <%= @storage.user[:name] %>
 </p>
+<%= link_to "Book", new_storage_booking_path(@storage.id) %>
+Booked on:
+<ul>
+<% @storage.bookings.each do |booking| %>
+<li><%= booking.start_date %> - <%= booking.end_date %></li>
+<% end %>
+</ul>
+<p></p>
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to 'Back', storages_path %>
-  </div>
+  </p>
 </div>
 </div>
-
-
