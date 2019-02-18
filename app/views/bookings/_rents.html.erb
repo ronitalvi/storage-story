@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">item</th>
+        <th scope="col">tenant/owner</th>
+        <th scope="col">status</th>
+        <th scope="col">date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @my_rents.size == 0 %>
+      <tr class='table-row'>
+        <td>Nothing rented yet</td>
+      </tr>
+      <% else %>
+      <% @my_rents.each do |booking| %>
+        <tr class='table-row'>
+          <th scope="row"><%= booking.storage.name %></th>
+          <td><%= booking.storage.user == current_user ? '<strong>You</strong>' : booking.storage.user.name %></td>
+          <td><%= booking.approved ? 'approved' : 'pending' %></td>
+          <td><%= booking.storage.user.email %></td>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>

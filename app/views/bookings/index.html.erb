@@ -1,26 +1,8 @@
 <div class='container'>
-<div class='spacer'></div>
-
-<table class="table">
-<thead>
-    <tr>
-      <th scope="col">item</th>
-      <th scope="col">tenant/owner</th>
-      <th scope="col">status</th>
-      <th scope="col">date</th>
-    </tr>
-  </thead>
-  <tbody>
-<% @bookings.each do |booking| %>
-<tr>
-<th scope="row"><%= booking.storage.name %></th>
-      <td><%= booking.storage.user == current_user ? 'You' : booking.storage.user.name %></td>
-      <td><%= booking.approved ? 'approved' : 'pending' %></td>
-      <td><%= booking.start_date %></td>
-      </tr>
-<% end %>
-  </tbody>
-</table>
-
-
-
+  <div class='spacer'></div>
+  <strong>My rents:</strong>
+  <%= render 'rents' %>
+  <div class='spacer'></div>
+  <strong>My storages:</strong>
+  <%= render 'owns' %>
+</div>
