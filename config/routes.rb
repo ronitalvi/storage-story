@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :bookings, only: %i[index show] do
     resources :messages
+    resources :reviews
   end
 
 
