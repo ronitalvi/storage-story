@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :mesages, through: :bookings
   has_many :reviews, through: :bookings
 
-  validates :name, presence: true
+  ## took it out name validaton
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
 end
