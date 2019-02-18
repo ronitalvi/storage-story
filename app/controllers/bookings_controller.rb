@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking = Booking.find(params[:id])
   end
 
   def new
@@ -27,8 +28,8 @@ class BookingsController < ApplicationController
       approved: false,
       user_id: current_user.id
     )
-    booking.save!
     if booking.save!
+
       redirect_to Storage.find(params[:storage_id]), notice: 'storage was successfully booked.'
     else
       render :new
