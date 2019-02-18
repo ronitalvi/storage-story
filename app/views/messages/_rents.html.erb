@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">status</th>
+      <th scope="col">storage</th>
+      <th scope="col">date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% puts "My user ID=#{current_user.id}".green %>
+    <% if @my_rents.size == 0 %>
+      <tr class='table-row'>
+        <td>Nothing rented yet</td>
+      </tr>
+    <% else %>
+      <% @my_rents.each do |message| %>
+        <tr class='table-row'>
+          <th scope="row"><%= message.read %></th>
+          <td scope="row"><%= message.booking.storage.name %></td>
+          <td scope="row"><%= message.created_at %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
