@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+  <strong>Address:</strong>
+  <%= @storage.address %>
+  <strong>name:</strong>
+  <%= @storage.name %>
+  <strong>description:</strong>
+  <%= @storage.description %>
+  <strong>sqm:</strong>
+  <%= @storage.sqm %> <p>m2</p>
+   <strong>price:</strong>
+  <%= @storage.price %>
+   <strong>photo:</strong>
+  <%= @storage.photo %>
+
+
+
+
+<p>
+  <strong>User:</strong>
+  <%= @storage.user[:neme] %>
+</p>
+<%= link_to 'Edit', edit_storage_path(@storage) %> |
+<%= link_to 'Back', storages_path %>
+  </div>
+</div>
+</div>
+
+

@@ -1,0 +1,43 @@
+_form.html.erb
+
+
+
+<%= simple_form_for(@storage) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+     <%= f.input :name,
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "name" }%>
+         <%= f.input :description,
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "description" }%>
+         <%= f.input :sqm,
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "sqm" }%>
+         <%= f.input :address,
+        required: true,
+
+        autofocus: true,
+        input_html: { autocomplete: "address" }%>
+         <%= f.input :price,
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "price" }%>
+         <%= f.input :photo,
+
+        required: true,
+        autofocus: true,
+        input_html: { autocomplete: "photo" }%>
+
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

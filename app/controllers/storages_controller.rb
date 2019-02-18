@@ -1,5 +1,6 @@
 class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:index]
 
   def index
     @storages = Storage.all
@@ -45,7 +46,7 @@ class StoragesController < ApplicationController
   end
 
   def storage_params
-    params.require(:storage).permit(:adress, :photo, :sqm, :price, :description, :name)
+    params.require(:storage).permit(:address, :photo, :sqm, :price, :description, :name)
   end
 end
 
