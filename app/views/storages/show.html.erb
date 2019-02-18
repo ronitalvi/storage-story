@@ -26,6 +26,7 @@ Booked on:
 <% end %>
 </ul>
 <p></p>
+<%= link_to 'message',  new_booking_message_path(@storage.user_id) %> |
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to 'Back', storages_path %>
   </p>
