@@ -14,8 +14,11 @@
                 required: true,
                 input_html: { autocomplete: "stars" } %>
   </div>
+  <%= @review.stars.to_i.times do  %>
+ <span class="glyphicon glyphicon-star"></span>
+<% end %>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Submit review" %>
   </div>
 <% end %>
