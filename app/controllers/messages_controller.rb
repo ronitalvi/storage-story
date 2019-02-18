@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.where(user_id: current_user)
+    @messages = Message.all
   end
 
   def new

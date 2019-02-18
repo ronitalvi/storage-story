@@ -15,6 +15,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'devise'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -30,7 +31,3 @@ group :development, :test do
   gem 'faker'
   gem 'colorize'
 end
-
-gem 'devise'
-
-gem 'mailboxer'
