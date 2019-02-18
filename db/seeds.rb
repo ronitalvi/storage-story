@@ -8,12 +8,14 @@
 
 print '~ destroying...'.red
 Code.destroy_all
+# Message.destroy_all
+# Review.destroy_all
 Booking.destroy_all
 Storage.destroy_all
 User.destroy_all
 puts 'done'.blue
 
-print '~ creating Codes...'.green
+print '~ creating Codes'.green
 # url to codes json
 url = 'https://gist.githubusercontent.com/Goles/3196253/raw/9ca4e7e62ea5ad935bb3580dc0a07d9df033b451/CountryCodes.json'
 # get the file and parse it
@@ -21,19 +23,21 @@ country_codes = JSON.parse(open(url).read)
 # go through the elements
 country_codes.each do |code|
   # create new code with element info
+  print '.'.green
   new_code = Code.new(code)
   # save new code
   new_code.save
 end
 puts 'done'.blue
 
-print '~ creating Users/Storages...'.green
+print '~ creating Users/Storages'.green
 # create phone #
 phone = ''
 10.times do
   phone += Random.rand(10).to_s
 end
 20.times do
+print '.'.green
   user = User.new(
     name:   Faker::Movies::StarWars.character,
     photo: 'https://picsum.photos/150',
@@ -59,9 +63,10 @@ end
 end
 puts 'done'.blue
 
-print '~ creating Bookings...'.green
+print '~ creating Bookings/Messages'.green
 # create 20 bookings
-20.times do
+100.times do
+  print '.'.green
   # set values for start date/end date
   start_value = rand(2..30)
   end_value = rand(10..100)
@@ -73,5 +78,29 @@ print '~ creating Bookings...'.green
     approved: rand(0..1) == 1 ? true : false
   )
   booking.save!
+  message = Message.new(
+    booking: booking,
+    user: User.all.to_a.sample,
+    read: false,
+    description: "REQUEST: #{booking.storage.name}"
+  )
+  message.save!
 end
 puts 'done'.blue
+
+print '~ creating Reviews'.green
+Booking.all.each do |booking|
+  print '.'.green
+  run = rand(0..10)
+  run.times do |tick|
+    # byebug
+    review = Review.new(
+      booking: booking,
+      description: Faker::Lorem.sentence,
+      stars: rand(0..5)
+    )
+    review.save!
+  end
+end
+puts 'done'.blue
+puts 'Seeding finished.'.blue

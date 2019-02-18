@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :bookings
-  has_many :mesages, through: :bookings
+  has_many :bookings, dependent: :delete_all
+  has_many :messages, through: :bookings
   has_many :reviews, through: :bookings
+  has_many :storages, dependent: :delete_all
 
   ## took it out name validaton
   validates :email, presence: true, uniqueness: true
