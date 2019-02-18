@@ -5,12 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :bookings
-  has_many :mesages, through: :bookings ### whith through or not
-  has_many :reviews, through: :bookings ### ?
+  has_many :mesages, through: :bookings
+  has_many :reviews, through: :bookings
 
   ## took it out name validaton
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true
-
-
 end

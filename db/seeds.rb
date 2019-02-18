@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+print '~ destroying...'.red
+Code.destroy_all
+Booking.destroy_all
+Storage.destroy_all
+User.destroy_all
+puts 'done'.blue
+
+print '~ creating Codes...'.green
 # url to codes json
 url = 'https://gist.githubusercontent.com/Goles/3196253/raw/9ca4e7e62ea5ad935bb3580dc0a07d9df033b451/CountryCodes.json'
 # get the file and parse it
@@ -17,35 +25,53 @@ country_codes.each do |code|
   # save new code
   new_code.save
 end
+puts 'done'.blue
 
-puts 'Destroying all storage'
-Storage.destroy_all
-puts 'the storage are destroyed bro'
-puts 'Destroying all users'
-User.destroy_all
-puts 'the User are destroyed bro'
-
-puts 'Creating 10 fake users...'
+print '~ creating Users/Storages...'.green
+# create phone #
+phone = ''
 10.times do
+  phone += Random.rand(10).to_s
+end
+20.times do
   user = User.new(
-    email:    Faker::Internet.email,
     name:   Faker::Movies::StarWars.character,
-    country_code:  rand(1..50),
+    photo: 'https://picsum.photos/150',
+    phone_number: phone,
+    area_code: Faker::PhoneNumber.extension,
+    country_code: Faker::PhoneNumber.country_code,
+    email:    Faker::Internet.email,
     password: "123456"
   )
   user.save!
-  rand(1..5).times do
+  rand(0..5).times do
     storage = Storage.new(
-        user_id: user.id,
-        name: Faker::Name.first_name,
+        photo: "https://picsum.photos/400/300",
         sqm: rand(0..200),
-        description: Faker::Movies::StarWars.quote,
-        address: Faker::Address.secondary_address,
-        price: rand(100.2...8000.1),
-        photo: "https://picsum.photos/200/300"
+        price: rand(100.2...1000.1).round(2),
+        address: Faker::Address.full_address,
+        description: Faker::Lorem.paragraph,
+        name: Faker::Lorem.sentence,
+        user_id: user.id,
       )
     storage.save!
   end
 end
-puts 'Finished!'
+puts 'done'.blue
 
+print '~ creating Bookings...'.green
+# create 20 bookings
+20.times do
+  # set values for start date/end date
+  start_value = rand(2..30)
+  end_value = rand(10..100)
+  booking = Booking.new(
+    user: User.all.to_a.sample,
+    storage: Storage.all.to_a.sample,
+    start_date: Faker::Date.forward(start_value).to_s,
+    end_date: Faker::Date.forward(end_value).to_s,
+    approved: rand(0..1) == 1 ? true : false
+  )
+  booking.save!
+end
+puts 'done'.blue

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_02_17_132334) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "storage_id"
-    t.date "star_date"
+    t.date "start_date"
     t.date "end_date"
     t.boolean "approved"
     t.datetime "created_at", null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2019_02_17_132334) do
     t.datetime "remember_created_at"
     t.string "name"
     t.string "photo"
-    t.integer "phone_number"
+    t.string "phone_number"
     t.integer "area_code"
     t.string "country_code"
     t.datetime "created_at", null: false
