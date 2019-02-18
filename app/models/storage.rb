@@ -8,5 +8,5 @@ class Storage < ApplicationRecord
   validates :address, presence: true
   validates :name, presence: true
   validates :description, presence: true
-  validates :photos, presence: true
+  validates :photo, presence: true
 end
