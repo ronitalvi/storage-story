@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :bookings, only: %i[index show] do
-    resources :messages
+    resources :messages, only: %i[new create]
     resources :reviews
   end
 
+  resources :messages, only: %i[index show destroy edit update]
 
   resources :storages do
     resources :bookings, only: %i[new create]

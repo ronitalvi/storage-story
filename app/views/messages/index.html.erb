@@ -1,20 +1,8 @@
-<% messages.each do |message| %>
-
-<table>
-  <thead>
-    <tr>
-      <td>description</td>
-      <td>booking id</td>
-      <td>user id</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= message.user_id %></td>
-      <td><%= message.booking_id %></td>
-      <%= message.description %>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-<% end -%>
+<div class='container'>
+  <div class='spacer'></div>
+  <strong>My rents:</strong>
+  <%= render 'rents' %>
+  <div class='spacer'></div>
+  <strong>My storages:</strong>
+  <%= render 'owns' %>
+</div>
