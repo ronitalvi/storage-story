@@ -10,6 +10,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.booking = @booking
+    if @review.save
+      redirect_to booking_path(@booking) # i couldn't try because there was no booking view yet // not sure if it works
+    else
+      render :new
+    end
   end
 
   def show

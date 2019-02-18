@@ -1,24 +1,6 @@
 <h1>Reviews new</h1>
-
-
-<%= simple_form_for([@booking, @review]) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :description,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "description" }%>
-
-    <%= f.input :stars,
-                required: true,
-                input_html: { autocomplete: "stars" } %>
-  </div>
-  <%= @review.stars.to_i.times do  %>
- <span class="glyphicon glyphicon-star"></span>
-<% end %>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Submit review" %>
-  </div>
+<%= simple_form_for [@booking, @review] do |f| %>
+  <%= f.input :description %>
+    <%= f.collection_radio_buttons :stars, [[1,  '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>
+  <%= f.submit "add a review", class: "btn btn-primary" %>
 <% end %>
