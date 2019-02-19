@@ -56,7 +56,9 @@ print '.'.green
         address: Faker::Address.full_address,
         description: Faker::Lorem.paragraph,
         name: Faker::Lorem.sentence,
-        user_id: user.id,
+        latitude: Faker::Address.latitude,
+        longitude: Faker::Address.longitude,
+        user_id: user.id
       )
     storage.save!
   end
