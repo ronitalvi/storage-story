@@ -11,11 +11,6 @@ import {initAutocomplete} from '../plugins/init_autocomplete'
 import { initMapbox } from '../plugins/init_mapbox';
 
 
-import './storage/index';
-
-import './messages/index';
-
-
 
 
 initMapbox();
