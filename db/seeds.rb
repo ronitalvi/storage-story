@@ -40,7 +40,7 @@ end
 print '.'.green
   user = User.new(
     name:   Faker::Movies::StarWars.character,
-    photo: 'https://picsum.photos/150',
+    photo: 'https://picsum.photos/150/?random',
     phone_number: phone,
     area_code: Faker::PhoneNumber.extension,
     country_code: Faker::PhoneNumber.country_code,
@@ -50,7 +50,7 @@ print '.'.green
   user.save!
   rand(0..5).times do
     storage = Storage.new(
-        photo: "https://picsum.photos/400/300",
+        photo: "https://picsum.photos/400/?random",
         sqm: rand(0..200),
         price: rand(100.2...1000.1).round(2),
         address: Faker::Address.full_address,
