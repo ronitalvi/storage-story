@@ -1,5 +1,4 @@
-import "bootstrap";
-
+// import "bootstrap";
 import './storage/index';
 import './message/index';
 import './message/show';
@@ -9,9 +8,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the styleshe
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import {initAutocomplete} from '../plugins/init_autocomplete'
 import { initMapbox } from '../plugins/init_mapbox';
-
-
-
 
 initMapbox();
 initAutocomplete()
