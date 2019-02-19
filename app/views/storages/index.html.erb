@@ -1,7 +1,15 @@
-<% @storages.each do |storage| %>
-  <div class='col-sm-12 col-md-5 card' data-id='<%= storage.id %>' style='background-image: url(<%= storage.photo %>);'>
-    <div class='card-details-wrapper card-sqm-wrapper'><div class='card-details-text'><%= storage.sqm %> m<sup>2</sup></div></div>
-    <div class='card-details-wrapper card-price-wrapper'><div class='card-details-text'>₪ <%= storage.price %></div></div>
-    <div class='card-title-wrapper'><div class='card-title-text'><%= storage.name %></div></div>
-  </div>
-<% end -%>
+<div class="card-c">
+      <% @storages.each do |storage| %>
+      <div class='col-sm-12 col-md-4 card' data-id='<%= storage.id %>' style='background-image: url(<%= storage.photo %>);'>
+        <div class='card-details-wrapper card-sqm-wrapper'><div class='card-details-text'><%= storage.sqm %> m<sup>2</sup></div></div>
+        <div class='card-details-wrapper card-price-wrapper'><div class='card-details-text'>₪ <%= storage.price %></div></div>
+        <div class='card-title-wrapper'><div class='card-title-text'><%= storage.name %></div></div>
+      </div>
+      <% end -%>
+</div>
+
+  <div
+    id="map"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
