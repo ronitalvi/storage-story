@@ -1,24 +1,7 @@
-<h1>storages</h1>
-
-
-          <% @storages.each do |storage| %>
-          <tr>
-            <td><%= storage.address %></td>
-            <td><%= storage.price %></td>
-            <td><%= storage.description %></td>
-            <td><%= storage.name %></td>
-            <td><%= storage.photo %></td>
-            <td><%= storage.sqm %></td>
-
-
-            <td><%= link_to 'Show', storage %></td>
-
-
-            <td><%= link_to 'Edit', edit_storage_path(storage) %></td>
-
-
-            <td><%= link_to 'Destroy', storage_path(storage), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-          </tr>
-          <% end -%>
-        </tbody>
+<% @storages.each do |storage| %>
+  <div class='col-sm-12 col-md-5 card' data-id='<%= storage.id %>' style='background-image: url(<%= storage.photo %>);'>
+    <div class='card-details-wrapper card-sqm-wrapper'><div class='card-details-text'><%= storage.sqm %> m<sup>2</sup></div></div>
+    <div class='card-details-wrapper card-price-wrapper'><div class='card-details-text'>₪ <%= storage.price %></div></div>
+    <div class='card-title-wrapper'><div class='card-title-text'><%= storage.name %></div></div>
+  </div>
+<% end -%>
