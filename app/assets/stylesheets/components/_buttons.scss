@@ -1,0 +1,26 @@
+.button {
+  align-self: center;
+  margin: 20px 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  box-shadow: 1px 1px 10px rgba(214, 214, 214, 0.8);
+}
+
+.button:hover {
+  box-shadow: 1px 1px 10px grey;
+}
+
+.button-primary {
+  background-color: #5896ED;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #B0FAAE;
+}
+
+.button-delete {
+background-color: #F55757;
+color: white;
+}

@@ -14,9 +14,9 @@
       </tr>
     <% else %>
       <% @my_storages.each do |message| %>
-        <tr class='table-row' data-id='<%= message.id %>'>
+        <tr class='table-row message-row' data-id='<%= message.id %>'>
           <th scope="row"><%= message.read ? '' : 'new' %></th>
-          <td scope="row"><%= message.booking.storage.name %></td>
+          <td scope="row"><%= message.description %></td>
           <td scope="row"><%= message.created_at %></td>
         </tr>
       <% end %>

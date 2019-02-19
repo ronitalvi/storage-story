@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   resources :bookings, only: %i[edit update destroy] do
   end
+
+  get '/bookings/:id/approved', to: 'bookings#approved'
 end

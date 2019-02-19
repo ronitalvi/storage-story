@@ -1,0 +1,63 @@
+
+tr {
+  cursor:pointer;
+}
+.message-show-heading {
+  margin: 20px auto;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  width: 90%;
+}
+
+.message-show-title {
+  margin: 10px 0;
+  // text-align: center;
+}
+
+.message-show-block {
+  margin: 5px 0;
+}
+
+.text {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.large {
+  font-size: 20pt;
+}
+
+.medium {
+  font-size: 14pt;
+}
+
+.small {
+  font-size: 12pt;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.icon-new-title {
+  font-size: 8pt;
+  color: green;
+}
+
+.icon-title-wrapper {
+  display: block;
+  width: 10px;
+  margin: 5px 10px 0 0;
+  padding-bottom: 10px;
+}
+
+.title-text {
+  display: block;
+  width: 80%;
+}
+
+.message-show-buttons {
+  text-align: center;
+  margin: 20px auto;
+}
+

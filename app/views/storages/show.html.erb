@@ -1,46 +1,64 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-  <strong>Address:</strong>
-  <%= @storage.address %>
-  <strong>name:</strong>
-  <%= @storage.name %>
-  <strong>description:</strong>
-  <%= @storage.description %>
-  <strong>sqm:</strong>
-  <%= @storage.sqm %> <p>m2</p>
-   <strong>price:</strong>
-  <%= @storage.price %>
-   <strong>photo:</strong>
-  <%= image_tag(@storage.photo, alt: "Storage photo" ) %>
-
-<p>
-  <strong>User:</strong>
-  <%= @storage.user[:name] %>
-</p>
-<%= link_to "Book", new_storage_booking_path(@storage.id) %>
-Booked on:
-<ul>
-<% @storage.bookings.each do |booking| %>
-<li><%= booking.start_date %> - <%= booking.end_date %></li>
-<% end %>
-</ul>
-<p></p>
-<%= link_to 'message',  new_booking_message_path(@storage.user_id) %> |
-<%= link_to 'Edit', edit_storage_path(@storage) %> |
-<%= link_to 'Back', storages_path %>
-  </p>
-</div>
-</div>
-<div class="row comment-section">
-  <div class="col-sm-4 col-sm-offset-4">
-    <% @storage.reviews.each do |review| %>
-    <p> <%= review.stars %></p>
-    <p><%= review.description %></p>
-<% if review.booking.user == current_user %>
- <%= link_to 'Destroy', booking_review_path(review.booking, review), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-    <hr>
-    <% end %>
+<div class='message-show-heading'>
+  <div class='title-text text large bold'>
+    <%= @storage.name %>
   </div>
 </div>
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-4'>
+      <div class='message-show-block text medium'>
+        Owner:
+      </div>
+      <div class='message-show-block text small'>
+        <%= @storage.user.name %>
+      </div>
+      <div class='message-show-block text medium'>
+        Booked on:
+      </div>
+      <div class='message-show-block text small'>
+        <ul>
+          <% @storage.bookings.each do |booking| %>
+            <li><%= booking.start_date %> - <%= booking.end_date %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class='message-show-block text small bold'>
+      </div>
+      <div class='text small'>
+      </div>
+      <div class='message-show-buttons'>
+        <%= link_to "Book", new_storage_booking_path(@storage.id), class: 'button button-primary'%>
+        <%# link_to 'message',  new_booking_message_path(@storage.user_id) %>
+        <%= link_to 'Edit', edit_storage_path(@storage), class: 'button button-secondary' %>
+        <button class='button button-secondary' id='mes-cancel'>Cancel</button>
+      </div>
+    </div>
+    <div class='col-sm-6'>
+      <div class='message-show-title text large'>
+        <%= @storage.name %>
+      </div>
+      <div class='message-show-block'>
+        <%= image_tag(@storage.photo, alt: "#{@storage.name}", class: 'storage-photo storage-photo-large') %>
+      </div>
+      <div class='message-show-block text medium'>
+        <%= @storage.description %>
+      </div>
+      <div class='message-show-block text medium'><strong>Area:</strong>
+        <%= @storage.sqm %>
+      </div>
+      <div class='message-show-block text medium'><strong>Price, ₪:</strong>
+        <%= @storage.price %>
+      </div>
+      <div class='message-show-block text medium'><strong>Location:</strong>
+        <%= @storage.address %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const body = document.getElementsByTagName("BODY")[0]
+  body.dataset.id = "<%= @storage.id %>"
+  const title = document.title
+</script>
+

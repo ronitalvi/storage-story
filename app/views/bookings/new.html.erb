@@ -1,30 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
-      <strong>Address:</strong>
-      <%= @storage.address %>
-      <strong>name:</strong>
-      <%= @storage.name %>
-      <strong>description:</strong>
-      <%= @storage.description %>
-      <strong>sqm:</strong>
-      <%= @storage.sqm %>
-      <p>m2</p>
-      <strong>price:</strong>
-      <%= @storage.price %>
-      <strong>photo:</strong>
-      <%= image_tag(@storage.photo, alt: "Storage photo" ) %>
-      <p>
-        <strong>User:</strong>
-        <%= @storage.user[:name] %>
-      </p>
-    <div class='mt_5'>
-      <%= simple_form_for @booking, url: storage_bookings_path(@storage.id) do |f| %>
-        <%= f.input :start_date, as: :date, html5: true, label: 'Start from', error: 'This field is mandatory' %>
-        <%= f.input :end_date, as: :date, html5: true, label: 'End on', error: 'This field is mandatory' %>
-        <%= f.button :submit %>
-      <% end %>
+    <div class="col-sm-12 col-lg-6">
+      <div class='message-show-block text small'> <%= image_tag(@storage.photo, alt: "Storage photo", class: 'storage-photo storage-photo-large' ) %></div>
+      <div class='message-show-block text small bold'>User:</div>
+      <div class='message-show-block text small'> <%= @storage.user[:name] %></div>
     </div>
+    <div class="col-sm-12 col-lg-6">
+      <div class='message-show-block text small bold'>Address:</div>
+      <div class='message-show-block text small'><%= @storage.address %></div>
+      <div class='message-show-block text small bold'>Title:</div>
+      <div class='message-show-block text small'>    <%= @storage.name %></div>
+      <div class='message-show-block text small bold'>Description:</div>
+      <div class='message-show-block text small'><%= @storage.description %></div>
+      <div class='message-show-block text small bold'>Area:</div>
+      <div class='message-show-block text small'><%= @storage.sqm %> m<sup>2</sup></div>
+      <div class='message-show-block text small bold'>Price:</div>
+      <div class='message-show-block text small'> <%= @storage.price %></div>
     </div>
   </div>
+  <div class='row'>
+    <div class="col-lg-6 offset-lg-6">
+      <div class='mt_5'>
+        <%= simple_form_for @booking, url: storage_bookings_path(@storage.id) do |f| %>
+          <%= f.input :start_date, as: :date, html5: true, label: 'Start from', error: 'This field is mandatory' %>
+          <%= f.input :end_date, as: :date, html5: true, label: 'End on', error: 'This field is mandatory' %>
+          <%= f.button :submit, class: 'button button-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <button class='button button-secondary' id='book-cancel'>Cancel</button>
 </div>
