@@ -1,7 +1,6 @@
 <div class='message-show-heading'>
-
   <% unless @message.read %>
-  <div class='icon-title-wrapper'><i class="fas fa-circle icon-new-title"></i></div>
+    <div class='icon-title-wrapper'><i class="fas fa-circle icon-new-title"></i></div>
   <% end %>
   <div class='title-text text large bold'>
     <%= @message.description %>
@@ -35,31 +34,40 @@
         <%= @message.booking.approved %>
       </div>
       <div class='message-show-buttons'>
-      <button class='button button-primary'>Confirm</button>
-      <button class='button button-secondary'>Cancel</button>
-      </div>
-    </div>
-    <div class='col-sm-6'>
-      <div class='message-show-title text large'>
-        <%= @message.booking.storage.name %>
-      </div>
-      <div class='message-show-block'>
-        <%= image_tag(@message.booking.storage.photo, alt: "#{@message.booking.storage.name}", class: 'storage-photo storage-photo-large') %>
-      </div>
-      <div class='message-show-block text medium'>
-        <%= @message.booking.storage.description %>
-      </div>
-      <div class='message-show-block text medium'><strong>Area:</strong>
-        <%= @message.booking.storage.sqm %>
-      </div>
-      <div class='message-show-block text medium'><strong>Price, ₪:</strong>
-        <%= @message.booking.storage.price %>
-      </div>
-      <div class='message-show-block text medium'><strong>Location:</strong>
-        <%= @message.booking.storage.address %>
-      </div>
+        <% if @message.booking.storage.user_id == current_user.id %>
+          <button class='button button-primary' id='mes-confirm'>Confirm</button>
+          <%= button_to('Confirm', "/bookings/#{@message.booking_id}/approved",
+          method: "get", class: 'button button-delete') %>
+          <%= button_to('Refuse', "/messages/#{@message.id}",
+          method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'button button-delete') %>
+      <% else %>
+        <%= button_to('Delete', "/messages/#{@message.id}",
+          method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'button button-delete') %>
+      <% end %>
+      <button class='button button-secondary' id='mes-cancel'>Cancel</button>
     </div>
   </div>
+  <div class='col-sm-6'>
+    <div class='message-show-title text large'>
+      <%= @message.booking.storage.name %>
+    </div>
+    <div class='message-show-block'>
+      <%= image_tag(@message.booking.storage.photo, alt: "#{@message.booking.storage.name}", class: 'storage-photo storage-photo-large') %>
+    </div>
+    <div class='message-show-block text medium'>
+      <%= @message.booking.storage.description %>
+    </div>
+    <div class='message-show-block text medium'><strong>Area:</strong>
+      <%= @message.booking.storage.sqm %>
+    </div>
+    <div class='message-show-block text medium'><strong>Price, ₪:</strong>
+      <%= @message.booking.storage.price %>
+    </div>
+    <div class='message-show-block text medium'><strong>Location:</strong>
+      <%= @message.booking.storage.address %>
+    </div>
+  </div>
+</div>
 </div>
 <script>
   const body = document.getElementsByTagName("BODY")[0]

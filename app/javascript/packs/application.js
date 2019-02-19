@@ -1,6 +1,5 @@
 import "bootstrap";
-
 import './storage/index';
-
-import './messages/index';
-
+import './message/index';
+import './message/show';
+import './booking/index';

@@ -1,12 +1,10 @@
 class BookingsController < ApplicationController
-
+    before_action :set_booking
   def index
     @bookings = Booking.all
     @my_storage_bookings = []
     @bookings.each do |booking|
-      if booking.storage.user_id == current_user.id
-        @my_storage_bookings << booking
-      end
+      @my_storage_bookings << booking if booking.storage.user_id == current_user.id
     end
     @my_rents = Booking.where(user: current_user)
   end
@@ -15,9 +13,33 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def destroy
+    @booking.destroy
+    puts "#{@booking.id} has been deleted".red
+    redirect_to '/bookings/', notice: 'Booking has been canceled.'
+  end
+
   def new
     @booking = Booking.new
     @storage = Storage.find(params['storage_id'])
+  end
+
+  def approved
+    booking = Booking.find(params[:id])
+    booking.update(approved: true)
+    puts "Booking #{booking.id}: approved".green
+    new_message = Message.new(
+      booking_id: booking.id,
+      user_id: booking.user_id,
+      description: "APPROVED: #{booking.storage.name}"
+    )
+    new_message.save
+    puts "Approval message #{new_message.id}: created".green
+    message = Message.find(request.referrer.match(/(\d*$)/)[0])
+    message.destroy
+    puts "Request message #{message.id}: destroyed".red
+    puts "Going back to #{messages_path}".blue
+    redirect_to messages_path
   end
 
   def create
@@ -29,11 +51,16 @@ class BookingsController < ApplicationController
       user_id: current_user.id
     )
     if booking.save!
-      notification = Message.new(description: "you booked", user_id: booking.user_id, booking_id: booking.id)
+      notification = Message.new(description: "REQUEST: #{booking.storage.name}", user_id: booking.user_id, booking_id: booking.id)
       notification.save
       redirect_to Storage.find(params[:storage_id]), notice: 'storage was successfully booked.'
     else
       render :new
     end
+  end
+    private
+
+  def set_booking
+    @booking = Booking.find(params[:id]) unless params[:id].nil?
   end
 end

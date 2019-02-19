@@ -1,23 +1,6 @@
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">item</th>
-        <th scope="col">tenant/owner</th>
-        <th scope="col">status</th>
-        <th scope="col">date</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class='table-row'>
-          <th scope="row"><%= @booking.storage.name %></th>
-          <td><%= @booking.start_date %></td>
-          <td><%= @booking.end_date %></td>
-
-          <td><%= @booking.approved ? 'approved' : 'pending' %></td>
-          <td><%= @booking.storage.user.email %></td>
-
-        </tr>
-
-
-    </tbody>
-  </table>
+<%= @booking.storage.name %>
+<%= @booking.start_date %>
+<%= @booking.end_date %>
+<%= @booking.approved ? 'approved' : 'pending' %>
+<%= button_to('Delete', "/bookings/#{@booking.id}",
+          method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'button button-delete') %>
