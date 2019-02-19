@@ -1,8 +1,16 @@
 // card
 .card-c{
-  width: 95vw;
+  display: flex;
+}
+
+.cards-plate {
+  flex-grow: 1;
+  margin-top: 10px;
+  margin-right: 700px;
 }
 .card {
+
+  flex-grow: 1px;
   align-self: center;
   margin: 20px;
   height: 200px;
