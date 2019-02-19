@@ -15,6 +15,7 @@
 
           <td><%= @booking.approved ? 'approved' : 'pending' %></td>
           <td><%= @booking.storage.user.email %></td>
+          <td><%= link_to 'Add a review', new_booking_review_path(@booking) %></td>
 
         </tr>
 
