@@ -39,7 +39,7 @@ end
 20.times do
 print '.'.green
   user = User.new(
-    name:   Faker::Movies::StarWars.character,
+    name:   Faker::Name.name,
     photo: 'https://picsum.photos/150/?random',
     phone_number: phone,
     area_code: Faker::PhoneNumber.extension,
