@@ -3,6 +3,8 @@ class Storage < ApplicationRecord
 
   has_many :bookings
 
+  has_many :reviews, through: :bookings
+
   validates :sqm, presence: true
   validates :price, presence: true
   validates :address, presence: true

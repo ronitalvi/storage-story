@@ -26,9 +26,20 @@ Booked on:
 <% end %>
 </ul>
 <p></p>
+
 <%= link_to 'message',  new_booking_message_path(@storage.user_id) %> |
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to 'Back', storages_path %>
   </p>
+</div>
+</div>
+<div class="row comment-section">
+  <div class="col-sm-4 col-sm-offset-4">
+<% @storage.reviews.each do |review| %>
+      <p> <%= review.stars %></p>
+     <p><%= review.description %></p>
+     <hr>
+<% end %>
+  </div>
 </div>
 </div>
