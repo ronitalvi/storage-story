@@ -1,22 +1,68 @@
+<div class='message-show-heading'>
 
-
-<% @messages.each do |message| %>
-
-<table>
-  <thead>
-    <tr>
-      <td>description</td>
-      <td>booking id</td>
-      <td>user id</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= message.user_id %></td>
-      <td><%= message.booking_id %></td>
-      <%= message.description %>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-<% end -%>
+  <% unless @message.read %>
+  <div class='icon-title-wrapper'><i class="fas fa-circle icon-new-title"></i></div>
+  <% end %>
+  <div class='title-text text large bold'>
+    <%= @message.description %>
+  </div>
+</div>
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-4'>
+      <div class='message-show-block'>
+        <%= image_tag(@message.user.photo, alt: "#{@message.user.name}", class: 'avatar avatar-large') %>
+      </div>
+      <div class='message-show-title text large'>
+        <%= @message.user.name %>
+      </div>
+      <div class='message-show-block text medium'>
+        wants to rent
+      </div>
+      <div class='message-show-block text small'>
+        from
+      </div>
+      <div class='message-show-block text small bold'>
+        <%= @message.booking.start_date.strftime("%B %-d, %Y") %>
+      </div>
+      <div class='message-show-block text small'>
+        till
+      </div>
+      <div class='message-show-block text small bold'>
+        <%= @message.booking.end_date.strftime("%B %-d, %Y") %>
+      </div>
+      <div class='text small'>
+        <%= @message.booking.approved %>
+      </div>
+      <div class='message-show-buttons'>
+      <button class='button button-primary'>Confirm</button>
+      <button class='button button-secondary'>Cancel</button>
+      </div>
+    </div>
+    <div class='col-sm-6'>
+      <div class='message-show-title text large'>
+        <%= @message.booking.storage.name %>
+      </div>
+      <div class='message-show-block'>
+        <%= image_tag(@message.booking.storage.photo, alt: "#{@message.booking.storage.name}", class: 'storage-photo storage-photo-large') %>
+      </div>
+      <div class='message-show-block text medium'>
+        <%= @message.booking.storage.description %>
+      </div>
+      <div class='message-show-block text medium'><strong>Area:</strong>
+        <%= @message.booking.storage.sqm %>
+      </div>
+      <div class='message-show-block text medium'><strong>Price, ₪:</strong>
+        <%= @message.booking.storage.price %>
+      </div>
+      <div class='message-show-block text medium'><strong>Location:</strong>
+        <%= @message.booking.storage.address %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const body = document.getElementsByTagName("BODY")[0]
+  body.dataset.id = "<%= @message.id %>"
+  const title = document.title
+</script>
