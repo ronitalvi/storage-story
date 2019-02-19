@@ -24,6 +24,6 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @messages = Message.where(user_id: current_user)
+    @message = Message.find(params[:id])
   end
 end

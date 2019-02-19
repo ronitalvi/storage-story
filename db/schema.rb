@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_124638) do
     t.bigint "booking_id"
     t.bigint "user_id"
     t.text "description"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_messages_on_booking_id"

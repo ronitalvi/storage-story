@@ -29,7 +29,8 @@ class BookingsController < ApplicationController
       user_id: current_user.id
     )
     if booking.save!
-
+      notification = Message.new(description: "you booked", user_id: booking.user_id, booking_id: booking.id)
+      notification.save
       redirect_to Storage.find(params[:storage_id]), notice: 'storage was successfully booked.'
     else
       render :new
