@@ -10,6 +10,12 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
+    @review.booking = @booking
+    if @review.save
+      redirect_to storage_path(@booking.storage) # i couldn't try because there was no booking view yet // not sure if it works
+    else
+      render :new
+    end
   end
 
   def show
@@ -19,6 +25,8 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @review.destroy
+    redirect_to storages_path
   end
 
   def edit
@@ -29,7 +37,6 @@ class ReviewsController < ApplicationController
   def set_review
     @review = Review.find(params[:id])
   end
-
 
   def set_booking
     @booking = Booking.find(params[:booking_id])

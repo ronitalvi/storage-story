@@ -5,7 +5,7 @@ class Storage < ApplicationRecord
   belongs_to :user
 
   has_many :bookings, dependent: :delete_all
-
+  has_many :reviews, through: :bookings
 
   validates :sqm, presence: true
   validates :price, presence: true
