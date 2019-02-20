@@ -1,7 +1,93 @@
+<div class='show-message-wrapper'>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 on" id='left'>
+        <div class="show-message-tails">
+          <div class='show-message-block-title'>
+            <div class='show-message-block-title-line'>
+              <div class='white-text'>
+                <%= @booking.user.name %>
+              </div>
+            </div>
+            <%= image_tag(@booking.user.photo, alt: "#{@booking.user.name}", class: 'show-message-avatar') %>
+          </div>
+          <div class='message-list'>
+            <div class='show-message-line regular'>wants to rent:</div>
+            <div class='show-message-line regular'>from</div>
+            <div class='show-message-line data'>
+              <%= @booking.start_date.strftime("%B %-d, %Y") %>
+            </div>
+            <div class='show-message-line regular'>till</div>
+            <div class='show-message-line data'>
+              <%= @booking.end_date.strftime("%B %-d, %Y") %>
+            </div>
+            <div class='show-message-line regular'>status:</div>
+            <% if @booking.approved %>
+              <div class='show-message-line center'>
+                <div class='appr'>approved</div>
+              </div>
+            <% else %>
+              <div class='show-message-line center'>
+                <div class='n-appr'>no approved</div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class='divider'></div>
+        <div class='show-message-buttons'>
+          <% if @booking.storage.user_id == current_user.id %>
+            <%= button_to('Confirm', "/bookings/#{@booking.id}/approved",
+method: "get", class: 'show-message-button btn-success') %>
+<%= button_to('Refuse', "/bookings/#{@booking.id}",
+          method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
+btn-danger') %>
+          <% else %>
+            <%= button_to('Delete', "/bookings/#{@booking.id}",
+          method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
+btn-danger') %>
+        <% end %>
+        <button class='show-message-button
+btn-light' id='mes-cancel'>Cancel</button>
+        </div>
 
-<%= @booking.storage.name %>
-<%= @booking.start_date %>
-<%= @booking.end_date %>
-<%= @booking.approved ? 'approved' : 'pending' %>
-<%= button_to('Delete', "/bookings/#{@booking.id}",
-          method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'button button-delete') %>
+      </div>
+      <div class="col-lg-6 col-md-6" id='right'>
+        <div class="show-message-tails">
+          <div class='show-message-storage-head'>
+            STORAGE
+          </div>
+          <div class='show-message-block-title'>
+            <div class='show-message-block-title-line'>
+              <div class='show-message-field-name'>Name:</div>
+              <div class='white-text'>
+                <%= @booking.storage.name %>
+              </div>
+            </div>
+          </div>
+          <div class='show-message-line-photo'>
+            <%= image_tag(@booking.storage.photo, alt: "#{@booking.storage.name}", class: 'show-message-storage-photo') %>
+          </div>
+          <div class='show-message-line regular'>Description:</div>
+          <div class='show-message-line data'>
+            <%= @booking.storage.description %>
+          </div>
+          <div class='show-message-line regular'>Area:</div>
+          <div class='show-message-line data'>
+            <%= @booking.storage.sqm %> sq m
+          </div>
+          <div class='show-message-line regular'>Price, ₪:</div>
+          <div class='show-message-line data'>
+            <%= @booking.storage.price %>
+          </div>
+          <div class='show-message-line regular'>Location:</div>
+          <div class='show-message-line data'>
+            <%= @booking.storage.address %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="message-header">
+    </div>
+  </div>
+</div>
+</div>
