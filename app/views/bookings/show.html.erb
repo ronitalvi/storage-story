@@ -4,4 +4,4 @@
 <%= @booking.end_date %>
 <%= @booking.approved ? 'approved' : 'pending' %>
 <%= button_to('Delete', "/bookings/#{@booking.id}",
-          method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'button button-delete') %>
+          method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'button button-delete') %>

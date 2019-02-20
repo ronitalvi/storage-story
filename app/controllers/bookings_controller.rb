@@ -1,7 +1,9 @@
 class BookingsController < ApplicationController
-    before_action :set_booking
+  before_action :set_booking, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+
   def index
-@bookings = Booking.all
+    @bookings = Booking.all
     # declare arrays
     @my_rents = []
     @my_storages = []
@@ -23,7 +25,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     puts "#{@booking.id} has been deleted".red
-    redirect_to '/bookings/', notice: 'Booking has been canceled.'
+    redirect_to(bookings_path)
   end
 
   def new
@@ -57,7 +59,6 @@ class BookingsController < ApplicationController
       approved: false,
       user_id: current_user.id
     )
-
     if booking.save!
       notification = Message.new(description: "REQUEST: #{booking.storage.name}", user_id: booking.user_id, booking_id: booking.id)
       notification.save
@@ -66,9 +67,14 @@ class BookingsController < ApplicationController
       render :new
     end
   end
-    private
+
+  private
 
   def set_booking
-    @booking = Booking.find(params[:id]) unless params[:id].nil?
+    @booking = Booking.find(params[:id])
+  end
+
+  def storage_params
+    params.require(:storage).permit(:address, :photo, :sqm, :price, :description, :name)
   end
 end
