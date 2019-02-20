@@ -1,15 +1,75 @@
-<div class='container'>
-<div class='spacer'></div>
-  <div class='title-text text large bold'>
-    MESSAGES
+<div class='wrapper'>
+  <div class="header">MESSAGES</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 on" id='left'>
+        <div class="my-rents-messages">
+          <div class='block-title'>
+            <i class="far fa-envelope block-icon"></i>
+            <div class='block-title-line'>about my rents</div>
+          </div>
+          <div class='message-list'>
+            <% puts "My user ID=#{current_user.id}".green %>
+            <% if @my_rents.size == 0 %>
+            <div>Nothing rented yet</div>
+            <% else %>
+            <% @my_rents.each do |message| %>
+            <% if message.read %>
+            <div class='message-row' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+              <% else %>
+              <div class='message-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+                <% end %>
+                <div class='message-details'>
+                  <div class='message-details-first'>
+                    <%= message.description %>
+                  </div>
+                  <div class='message-details-second'>
+                    by
+                    <%= message.user.name %>
+                    on
+                    <%= message.created_at.strftime('%-d%b') %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" id='right'>
+          <div class="my-owns-messages">
+            <div class='block-title'>
+              <i class="far fa-envelope block-icon"></i>
+              <div class='block-title-line'>about my storages</div>
+            </div>
+            <div class='message-list'>
+              <% puts "My user ID=#{current_user.id}".green %>
+              <% if @my_storages.size == 0 %>
+              <div>Nothing rented yet</div>
+              <% else %>
+              <% @my_storages.each do |message| %>
+              <% if message.read %>
+              <div class='message-row' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+                <% else %>
+                <div class='message-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+                  <% end %>
+                  <div class='message-details'>
+                    <div class='message-details-first'>
+                      <%= message.description %>
+                    </div>
+                    <div class='message-details-second'>
+                      <%= message.created_at.strftime('%-d%b') %>
+                      <%= message.user.name %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-  <div class='spacer'></div>
-  <strong>I am renting:</strong>
-  <%= render 'rents' %>
-  <div class='spacer'></div>
-  <strong>My storages:</strong>
-  <%= render 'owns' %>
-</div>
-
-
-
