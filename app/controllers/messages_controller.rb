@@ -10,20 +10,23 @@ class MessagesController < ApplicationController
     @my_storages = []
     # fill arrays
     @messages.each do |message|
-      # byebug
       stor = message.booking.storage.user_id == current_user.id
       rent = message.booking.user_id == current_user.id
-      # action = message.description.split(': ')[0]
       @my_rents << message if rent
       @my_storages << message if stor
-      # unless check
-      #   @my_rents << message if @actions_rent.include?(action)
-      # end
-      # if check
-      #   @my_storages << message if @actions_stor.include?(action)
-      # end
     end
   end
+
+  # def unread_qty
+  #   @messages = Message.all
+  #   @mesQty=0
+  #   @messages.each do |message|
+  #   stor = message.booking.storage.user_id == current_user.id
+  #   rent = message.booking.user_id == current_user.id
+  #   @mesQty += 1 if (message.read == false && (rent || stor))
+  #   end
+  #   return @mesQty
+  # end
 
   def new
     @booking = Booking.find(params[:booking_id])
@@ -35,8 +38,12 @@ class MessagesController < ApplicationController
 
   def destroy
     # raise
-    booking =Booking.find(@message.booking_id)
-    booking.destroy
+    if params[:book_id].nil?
+      @message.destroy
+    else
+      booking = Booking.find(@message.booking_id)
+      booking.destroy
+    end
     redirect_to '/messages', notice: 'Message has been deleted.'
   end
 
@@ -59,10 +66,12 @@ class MessagesController < ApplicationController
 
   def set_message
     @message = Message.find(params[:id]) unless params[:id].nil?
+  rescue ActiveRecord::RecordNotFound => e
+    redirect_to messages_path, notice: 'Message not found.'
   end
 
-  def actions_array
-    # @actions_stor = %w[REQUEST]
-    # @actions_rent = %w[APPROVED]
-  end
+  # def actions_array
+  #   @actions_stor = %w[APPROVED]
+  #   @actions_rent = %w[REQUEST]
+  # end
 end

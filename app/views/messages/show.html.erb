@@ -43,11 +43,11 @@
   <%= button_to('Confirm', "/bookings/#{@message.booking_id}/approved",
 method: "get", class: 'show-message-button btn-success') %>
   <%= button_to('Refuse', "/messages/#{@message.id}",
-method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
+method: "delete", params:{book_id: @message.booking_id}, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
 btn-danger') %>
   <% else %>
   <%= button_to('Delete', "/messages/#{@message.id}",
-method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class:
+method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class:
 'show-message-button
 btn-danger') %>
   <% end %>
