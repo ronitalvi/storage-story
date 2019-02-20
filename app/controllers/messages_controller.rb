@@ -11,14 +11,17 @@ class MessagesController < ApplicationController
     # fill arrays
     @messages.each do |message|
       # byebug
-      check = message.booking.storage.user_id == current_user.id
-      action = message.description.split(': ')[0]
-      unless check
-        @my_rents << message if @actions_rent.include?(action)
-      end
-      if check
-        @my_storages << message if @actions_stor.include?(action)
-      end
+      stor = message.booking.storage.user_id == current_user.id
+      rent = message.booking.user_id == current_user.id
+      # action = message.description.split(': ')[0]
+      @my_rents << message if rent
+      @my_storages << message if stor
+      # unless check
+      #   @my_rents << message if @actions_rent.include?(action)
+      # end
+      # if check
+      #   @my_storages << message if @actions_stor.include?(action)
+      # end
     end
   end
 
@@ -57,8 +60,7 @@ class MessagesController < ApplicationController
   end
 
   def actions_array
-    @actions_stor = %w[REQUEST]
-    @actions_rent = %w[APPROVED]
+    # @actions_stor = %w[REQUEST]
+    # @actions_rent = %w[APPROVED]
   end
-
 end

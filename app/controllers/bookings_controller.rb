@@ -1,12 +1,19 @@
 class BookingsController < ApplicationController
     before_action :set_booking
   def index
-    @bookings = Booking.all
-    @my_storage_bookings = []
+@bookings = Booking.all
+    # declare arrays
+    @my_rents = []
+    @my_storages = []
+    # fill arrays
     @bookings.each do |booking|
-      @my_storage_bookings << booking if booking.storage.user_id == current_user.id
+      # byebug
+      stor = booking.storage.user_id == current_user.id
+      rent = booking.user_id == current_user.id
+      # action = message.description.split(': ')[0]
+      @my_rents << booking if rent
+      @my_storages << booking if stor
     end
-    @my_rents = Booking.where(user: current_user)
   end
 
   def show
@@ -50,6 +57,7 @@ class BookingsController < ApplicationController
       approved: false,
       user_id: current_user.id
     )
+
     if booking.save!
       notification = Message.new(description: "REQUEST: #{booking.storage.name}", user_id: booking.user_id, booking_id: booking.id)
       notification.save
