@@ -48,7 +48,7 @@ class BookingsController < ApplicationController
     message.destroy
     puts "Request message #{message.id}: destroyed".red
     puts "Going back to #{messages_path}".blue
-    redirect_to messages_path
+    redirect_to(bookings_path)
   end
 
   def create

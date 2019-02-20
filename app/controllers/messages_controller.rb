@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  before_action :set_message, :actions_array
+  before_action :set_message
 
   def index
     puts "I am #{current_user.name}, id #{current_user.id}, email #{current_user.email}".green

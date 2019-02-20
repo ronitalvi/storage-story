@@ -4,7 +4,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 on" id='left'>
+      <div class="col-lg-6 col-md-6 on" id='left'>
         <div class="show-message-tails">
           <div class='show-message-block-title'>
             <div class='show-message-block-title-line'>
@@ -27,11 +27,11 @@
             </div>
             <div class='show-message-line regular'>status:</div>
             <% if @message.booking.approved %>
-            <div class='show-message-line'>
+            <div class='show-message-line center'>
               <div class='appr'>approved</div>
             </div>
             <% else %>
-            <div class='show-message-line'>
+            <div class='show-message-line center'>
               <div class='n-appr'>no approved</div>
             </div>
             <% end %>
@@ -57,7 +57,7 @@ btn-light' id='mes-cancel'>Cancel</button>
       </div>
 
 
-    <div class="col-lg-6" id='right'>
+    <div class="col-lg-6 col-md-6" id='right'>
       <div class="show-message-tails">
 
         <div class='show-message-storage-head'>
