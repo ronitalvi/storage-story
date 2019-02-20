@@ -27,7 +27,7 @@
                     by
                     <%= message.user.name %>
                     on
-                    <%= message.created_at.strftime('%-d%b') %>
+                    <%= message.created_at.strftime('%-d %b') %>
                   </div>
                 </div>
               </div>
@@ -58,8 +58,10 @@
                       <%= message.description %>
                     </div>
                     <div class='message-details-second'>
-                      <%= message.created_at.strftime('%-d%b') %>
-                      <%= message.user.name %>
+by
+<%= message.user.name %>
+on
+<%= message.created_at.strftime('%-d %b') %>
                     </div>
                   </div>
                 </div>
