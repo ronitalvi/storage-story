@@ -1,15 +1,23 @@
 class MessagesController < ApplicationController
-  before_action :set_message
+  before_action :set_message, :actions_array
+
   def index
-    puts 'Messages Controller says "hi!"'.red
+    puts "I am #{current_user.name}, id #{current_user.id}, email #{current_user.email}".green
+    # get all messages
     @messages = Message.all
+    # declare arrays
     @my_rents = []
     @my_storages = []
+    # fill arrays
     @messages.each do |message|
-      @my_rents << message if message.booking.user_id == current_user.id
-      stor_owner = message.booking.storage.user_id
-      if stor_owner == current_user.id
-        @my_storages << message unless message.description.split(': ')[0]=='APPROVED'
+      # byebug
+      check = message.booking.storage.user_id == current_user.id
+      action = message.description.split(': ')[0]
+      unless check
+        @my_rents << message if @actions_rent.include?(action)
+      end
+      if check
+        @my_storages << message if @actions_stor.include?(action)
       end
     end
   end
@@ -27,6 +35,10 @@ class MessagesController < ApplicationController
     redirect_to '/messages', notice: 'Message has been deleted.'
   end
 
+  def show
+    @message.update(read: true)
+  end
+
   def approved
     Message.find(params[:id]).booking.approved = true
     message = Message.new(
@@ -42,7 +54,11 @@ class MessagesController < ApplicationController
 
   def set_message
     @message = Message.find(params[:id]) unless params[:id].nil?
+  end
 
+  def actions_array
+    @actions_stor = %w[REQUEST]
+    @actions_rent = %w[APPROVED]
   end
 
 end

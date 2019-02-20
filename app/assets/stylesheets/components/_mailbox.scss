@@ -69,13 +69,6 @@ $text: rgb(155, 226, 212);
   border-left: 3px solid greenyellow;
 }
 
-
-.message-details {
-  // display:flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
-}
-
 .message-details-first,
 .message-details-second {
   height: 20px;
@@ -90,42 +83,5 @@ $text: rgb(155, 226, 212);
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
   font-size: 12pt;
+  color: $background;
 }
-
-
-
-
-// // Extra small devices (portrait phones, less than 576px)
-// // No media query for `xs` since this is the default in Bootstrap
-// @media (min-width: 0) {
-//   // .message-row{
-//   //   width: 90vw;
-//   // }
-//   // .message-details-first,
-//   // .message-details-second {
-//   // }
-//   // .ind-new {}
-// }
-// // Small devices (landscape phones, 576px and up)
-// @media (min-width: 576px) {
-// }
-
-// // Medium devices (tablets, 768px and up)
-// @media (min-width: 768px) {
-// }
-
-// // Large devices (desktops, 992px and up)
-// @media (min-width: 992px) {
-//   .message-row {
-//     // width: 100%;
-//   }
-
-//   .message-details-first,
-//   .message-details-second {}
-
-//   .ind-new {}
-// }
-
-// // Extra large devices (large desktops, 1200px and up)
-// @media (min-width: 1200px) {
-// }

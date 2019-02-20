@@ -23,11 +23,10 @@ const cropLongSubj = () => {
 
 const messages = document.getElementsByClassName('message-row')
 
-Object.keys(messages).forEach((element)=>{
+Object.keys(messages).forEach((element) => {
   messages[element].addEventListener("click", (event) => {
     window.location.href = `messages/${messages[element].dataset.id}`
   })
 })
 
 window.addEventListener("reratio", (event) => cropLongSubj())
-
