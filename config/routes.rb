@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
 
   get '/bookings/:id/approved', to: 'bookings#approved'
+  get '/profile', to: 'pages#profile'
+
 end
