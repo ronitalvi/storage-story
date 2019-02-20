@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'storages#index'
+  root to: 'pages#home'
   devise_for :users
 
   resources :bookings, only: %i[index show] do
@@ -16,4 +16,8 @@ Rails.application.routes.draw do
 
   resources :bookings, only: %i[edit update destroy] do
   end
+
+  get '/bookings/:id/approved', to: 'bookings#approved'
+  get '/profile', to: 'pages#profile'
+
 end

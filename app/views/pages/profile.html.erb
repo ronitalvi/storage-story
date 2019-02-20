@@ -1,0 +1,29 @@
+<div>
+  <div class="banner-p">
+    <div class="banner-p-avatar ">
+      <%=image_tag(current_user.photo, class: "avatar-large")%>
+    </div>
+    <div class="banner-p-name"><h1><%= current_user.name %></h1></div>
+  </div>
+  <div class="container text-center">
+    <h1>Storges</h1>
+    <% if current_user.storages.size > 0 %>
+    <% current_user.storages.each do |storage| %>
+    <div class="belongings">
+      <div class="bb-photo"><%=image_tag(storage.photo, class: "s-photo")%></div>
+      <div class="s-name"><h3> <%= storage.name %></h3></div>
+      <div class="s-description"><p> <%= storage.description %></p></div>
+      <div class="s-sqm"><h3> <%= storage.sqm %>m <sup>2</sup> </h3></div>
+      <div class="s-price"><h3> ₪<%= storage.price %> </h3></div>
+    </div>
+    <% end -%>
+  </div>
+  <% else %>
+  <h1>emty</h1>
+  <% end -%>
+  <div class="link">
+    <%= link_to 'Add storage', new_storage_path, class: "btn btn-primary btn-large" %>
+  </div>
+</div>
+<div class="emty-spaces"></div>
+</div>

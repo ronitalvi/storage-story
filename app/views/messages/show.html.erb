@@ -1,68 +1,103 @@
-<div class='message-show-heading'>
-
-  <% unless @message.read %>
-  <div class='icon-title-wrapper'><i class="fas fa-circle icon-new-title"></i></div>
-  <% end %>
-  <div class='title-text text large bold'>
+<div class='show-message-wrapper'>
+  <div class="message-header">
     <%= @message.description %>
   </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 on" id='left'>
+        <div class="show-message-tails">
+          <div class='show-message-block-title'>
+            <div class='show-message-block-title-line'>
+              <div class='show-message-field-name'>FROM:</div>
+              <div class='white-text'>
+                <%= @message.user.name %>
+              </div>
+            </div>
+            <%= image_tag(@message.user.photo, alt: "#{@message.user.name}", class: 'show-message-avatar') %>
+          </div>
+          <div class='message-list'>
+            <div class='show-message-line regular'>wants to rent:</div>
+            <div class='show-message-line regular'>from</div>
+            <div class='show-message-line data'>
+              <%= @message.booking.start_date.strftime("%B %-d, %Y") %>
+            </div>
+            <div class='show-message-line regular'>till</div>
+            <div class='show-message-line data'>
+              <%= @message.booking.end_date.strftime("%B %-d, %Y") %>
+            </div>
+            <div class='show-message-line regular'>status:</div>
+            <% if @message.booking.approved %>
+            <div class='show-message-line'>
+              <div class='appr'>approved</div>
+            </div>
+            <% else %>
+            <div class='show-message-line'>
+              <div class='n-appr'>no approved</div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <div class='divider'></div>
+<div class='show-message-buttons'>
+  <% if @message.booking.storage.user_id == current_user.id %>
+  <%= button_to('Confirm', "/bookings/#{@message.booking_id}/approved",
+method: "get", class: 'show-message-button btn-success') %>
+  <%= button_to('Refuse', "/messages/#{@message.id}",
+method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
+btn-danger') %>
+  <% else %>
+  <%= button_to('Delete', "/messages/#{@message.id}",
+method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class:
+'show-message-button
+btn-danger') %>
+  <% end %>
+  <button class='show-message-button
+btn-light' id='mes-cancel'>Cancel</button>
 </div>
-<div class='container'>
-  <div class='row'>
-    <div class='col-sm-4'>
-      <div class='message-show-block'>
-        <%= image_tag(@message.user.photo, alt: "#{@message.user.name}", class: 'avatar avatar-large') %>
       </div>
-      <div class='message-show-title text large'>
-        <%= @message.user.name %>
-      </div>
-      <div class='message-show-block text medium'>
-        wants to rent
-      </div>
-      <div class='message-show-block text small'>
-        from
-      </div>
-      <div class='message-show-block text small bold'>
-        <%= @message.booking.start_date.strftime("%B %-d, %Y") %>
-      </div>
-      <div class='message-show-block text small'>
-        till
-      </div>
-      <div class='message-show-block text small bold'>
-        <%= @message.booking.end_date.strftime("%B %-d, %Y") %>
-      </div>
-      <div class='text small'>
-        <%= @message.booking.approved %>
-      </div>
-      <div class='message-show-buttons'>
-      <button class='button button-primary'>Confirm</button>
-      <button class='button button-secondary'>Cancel</button>
-      </div>
-    </div>
-    <div class='col-sm-6'>
-      <div class='message-show-title text large'>
-        <%= @message.booking.storage.name %>
-      </div>
-      <div class='message-show-block'>
-        <%= image_tag(@message.booking.storage.photo, alt: "#{@message.booking.storage.name}", class: 'storage-photo storage-photo-large') %>
-      </div>
-      <div class='message-show-block text medium'>
-        <%= @message.booking.storage.description %>
-      </div>
-      <div class='message-show-block text medium'><strong>Area:</strong>
-        <%= @message.booking.storage.sqm %>
-      </div>
-      <div class='message-show-block text medium'><strong>Price, ₪:</strong>
-        <%= @message.booking.storage.price %>
-      </div>
-      <div class='message-show-block text medium'><strong>Location:</strong>
-        <%= @message.booking.storage.address %>
+
+
+    <div class="col-lg-6" id='right'>
+      <div class="show-message-tails">
+
+        <div class='show-message-storage-head'>
+          STORAGE
+        </div>
+        <div class='show-message-block-title'>
+          <div class='show-message-block-title-line'>
+            <div class='show-message-field-name'>Name:</div>
+            <div class='white-text'>
+              <%= @message.booking.storage.name %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class='show-message-line-photo'>
+          <%= image_tag(@message.booking.storage.photo, alt: "#{@message.booking.storage.name}", class: 'show-message-storage-photo') %>
+        </div>
+
+        <div class='show-message-line regular'>Description:</div>
+        <div class='show-message-line data'>
+          <%= @message.booking.storage.description %>
+        </div>
+        <div class='show-message-line regular'>Area:</div>
+        <div class='show-message-line data'>
+          <%= @message.booking.storage.sqm %> sq m
+        </div>
+        <div class='show-message-line regular'>Price, ₪:</div>
+        <div class='show-message-line data'>
+          <%= @message.booking.storage.price %>
+        </div>
+        <div class='show-message-line regular'>Location:</div>
+        <div class='show-message-line data'>
+          <%= @message.booking.storage.address %>
+        </div>
       </div>
     </div>
   </div>
+  <div class="message-header">
+
+  </div>
 </div>
-<script>
-  const body = document.getElementsByTagName("BODY")[0]
-  body.dataset.id = "<%= @message.id %>"
-  const title = document.title
-</script>
+</div>

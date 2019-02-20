@@ -2,9 +2,8 @@
   <thead>
     <tr>
       <th scope="col">item</th>
-      <th scope="col">tenant/owner</th>
       <th scope="col">status</th>
-      <th scope="col">date</th>
+      <th scope="col">date/time</th>
     </tr>
   </thead>
   <tbody>
@@ -14,13 +13,10 @@
       </tr>
     <% else %>
       <% @my_storage_bookings.each do |booking| %>
-        <tr class='table-row'>
+        <tr class='table-row booking-row' data-id='<%= booking.id %>'>
           <th scope="row"><%= booking.storage.name %></th>
-          <td><%= booking.storage.user == current_user ? 'you' : booking.storage.user.name %></td>
           <td><%= booking.approved ? 'approved' : 'pending' %></td>
-          <td><%= booking.storage.user.email %></td>
-
-          <td> <%= link_to 'show', booking_path(booking)  %></td>
+          <td><%= booking.created_at %></td>
         </tr>
       <% end %>
     <% end %>

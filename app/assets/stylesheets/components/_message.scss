@@ -1,0 +1,126 @@
+$background: rgb(121, 118, 135);
+$background-text:rgb(194, 194, 194);
+$select: rgb(203, 241, 228);
+$text: rgb(155, 226, 212);
+
+
+.show-message-wrapper {
+  background-color: $background;
+}
+
+.header {
+  font-size: 24pt;
+  font-weight: bold;
+  padding: 20px 0 0 0;
+  text-align: center;
+  color: $background-text;
+}
+
+.show-message-block-title {
+  font-size: 16pt;
+  padding: 0 20pt 20pt 20pt;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  color: $background-text;
+}
+
+.show-message-block-title-line {
+  font-size: 18pt;
+}
+
+.show-message-field-name {
+  font-size: 14pt;
+  font-weight: 600;
+}
+.white-text{
+  color:white;
+}
+
+.show-message-avatar {
+  margin-left: 40px;
+  border-radius: 3px;
+  height:7vh;
+  border: 1px solid $background-text;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.7s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+      transform: scale(2);
+      background-color: $select;
+    }
+}
+
+.show-message-line{
+  padding: 0 0 10pt 20pt;
+}
+
+.regular{
+  font-size: 12pt;
+  color: $background-text;
+}
+.data{
+  padding-left: 30pt;
+  font-size: 14pt;
+  color:white;
+}
+
+.appr,
+.n-appr{
+margin-left:10pt;
+padding: 5pt 20pt;
+font-size: 14pt;
+  border-radius: 3px;
+  display: inline;
+}
+.appr {
+  color: white;
+  background-color: #28a745;
+}
+
+.n-appr {
+  border: 1px solid $background-text;
+}
+
+.show-message-buttons {
+ text-align: center;
+}
+
+.show-message-button{
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transition-duration: 0.7s;
+  &:hover{
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.show-message-storage-head {
+  font-size: 20pt;
+  font-weight: bold;
+  text-align: center;
+  padding: 0 0 20px 0;
+}
+
+.show-message-line-photo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.show-message-storage-photo {
+  border-radius: 3px;
+  max-width: 80%;
+  border: 1px solid $background-text;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.divider{
+  border-top: 1px solid $background-text;
+  width: 300px;
+  margin: 20px auto;
+  height: 2px;
+}
