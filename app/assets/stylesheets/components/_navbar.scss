@@ -2,6 +2,8 @@
 .main-nav {
  position: sticky;
   top: 0px;
+  z-index: 1;
+  transition: top 0.3s;
 }
 
 .navbar-wagon {

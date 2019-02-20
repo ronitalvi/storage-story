@@ -2,6 +2,7 @@
 import './storage/index';
 import './message/index';
 import './message/show';
+import './message/mailbox';
 import './booking/index';
 
 import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
