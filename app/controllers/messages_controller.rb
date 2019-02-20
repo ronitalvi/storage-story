@@ -34,7 +34,9 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message.destroy
+    # raise
+    booking =Booking.find(@message.booking_id)
+    booking.destroy
     redirect_to '/messages', notice: 'Message has been deleted.'
   end
 
