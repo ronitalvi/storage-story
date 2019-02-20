@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_092955) do
     t.datetime "updated_at", null: false
   end
 
-
   create_table "messages", force: :cascade do |t|
     t.bigint "booking_id"
     t.bigint "user_id"
@@ -90,9 +89,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_092955) do
 
   add_foreign_key "bookings", "storages"
   add_foreign_key "bookings", "users"
-  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
-  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
-  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "messages", "bookings"
   add_foreign_key "messages", "users"
   add_foreign_key "reviews", "bookings"
