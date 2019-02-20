@@ -28,7 +28,7 @@ class StoragesController < ApplicationController
     @storage = Storage.new(storage_params)
     @storage.user = current_user
     if @storage.save
-      redirect_to @storage, notice: 'storage was successfully updated.'
+      redirect_to profile_path, notice: 'storage was successfully updated.'
     else
       render :new
     end
