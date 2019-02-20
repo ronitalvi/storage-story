@@ -36,7 +36,7 @@
         <div class='divider'></div>
         <div class='show-message-buttons'>
           <% if @booking.storage.user_id == current_user.id %>
-            <%= button_to('Confirm', "/bookings/#{@booking_id}/approved",
+            <%= button_to('Confirm', "/bookings/#{@booking.id}/approved",
 method: "get", class: 'show-message-button btn-success') %>
 <%= button_to('Refuse', "/bookings/#{@booking.id}",
           method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button

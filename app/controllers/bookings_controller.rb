@@ -37,6 +37,13 @@ class BookingsController < ApplicationController
     booking = Booking.find(params[:id])
     booking.update(approved: true)
     puts "Booking #{booking.id}: approved".green
+    from_where = request.referrer.split('/')[3]
+    if from_where == 'bookings'
+      message = Message.where(booking_id: booking.id)[0]
+    else
+      message = Message.find(request.referrer.match(/(\d*$)/)[0])
+    end
+    message.destroy
     new_message = Message.new(
       booking_id: booking.id,
       user_id: booking.user_id,
@@ -44,11 +51,13 @@ class BookingsController < ApplicationController
     )
     new_message.save
     puts "Approval message #{new_message.id}: created".green
-    message = Message.find(request.referrer.match(/(\d*$)/)[0])
-    message.destroy
     puts "Request message #{message.id}: destroyed".red
     puts "Going back to #{messages_path}".blue
-    redirect_to(bookings_path)
+    if from_where == 'bookings'
+      redirect_to(bookings_path)
+    else
+      redirect_to(messages_path)
+    end
   end
 
   def create
@@ -71,7 +80,8 @@ class BookingsController < ApplicationController
   private
 
   def set_booking
-    @booking = Booking.find(params[:id])
+    @booking = Booking.find(params[:id]) if params[:id].to_i > 0
+    @booking = Booking.find(params[:id]) if params[:book_id].to_i > 0
   end
 
   def storage_params
