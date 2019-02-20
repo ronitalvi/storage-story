@@ -14,14 +14,21 @@
       </tr>
       <% else %>
       <% @my_rents.each do |booking| %>
-        <tr class='table-row'>
-          <th scope="row"><%= booking.storage.name %></th>
-          <td><%= booking.storage.user == current_user ? '<strong>You</strong>' : booking.storage.user.name %></td>
-          <td><%= booking.approved ? 'approved' : 'pending' %></td>
-          <td><%= booking.storage.user.email %></td>
-          <td><%= link_to 'message',  new_booking_message_path(booking) %></td>
-        </tr>
+
+          <tr class='table-row'>
+
+
+            <th scope="row"><%= booking.storage.name %></th>
+            <td><%= booking.storage.user == current_user ? '<strong>You</strong>' : booking.storage.user.name %></td>
+            <td><%= booking.approved ? 'approved' : 'pending' %></td>
+            <td><%= booking.storage.user.email %></td>
+           <td><%= link_to 'message',  new_booking_message_path(booking[:id]) %></td>
+           <td> <%= link_to 'show', booking_path(booking)  %></td>
+
+          </tr>
+        <% end %>
+
       <% end %>
-      <% end %>
+
     </tbody>
   </table>
