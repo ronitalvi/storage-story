@@ -14,11 +14,11 @@ $text: rgb(155, 226, 212);
   height: 100vh;
 }
 
-.header {
+.message-header {
   font-size: 24pt;
   font-weight: bold;
-  padding: 20px 0 0 0;
-  text-align: center;
+  padding: 20px 0 0 20px;
+  text-align: left;
   color: $background-text;
 }
 
@@ -80,7 +80,7 @@ $text: rgb(155, 226, 212);
 }
 
 .message-details-second {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
   font-size: 12pt;
   color: $background;
