@@ -4,7 +4,6 @@ class StoragesController < ApplicationController
 
   def index
     @storages = Storage.all
-
     @markers = @storages.map do |storage|
       {
         lng: storage.longitude,
