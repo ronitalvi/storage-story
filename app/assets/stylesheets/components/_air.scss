@@ -1,0 +1,80 @@
+$background: rgb(121, 118, 135);
+$background-text:rgb(194, 194, 194);
+$select: rgb(203, 241, 228);
+$text: rgb(155, 226, 212);
+
+.bookings-list-text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2)
+}
+
+
+@keyframes slideInFromDown {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+body {
+  background-color: $background;
+}
+
+.bookings-list-wrapper {
+  padding: 0 10px;
+}
+
+#bookings-index-cont{
+animation: 1s ease-out 0s 1 slideInFromDown;}
+
+
+.bookings-list-header {
+  font-size: 24pt;
+  font-weight: bold;
+  padding: 20px 0 0 0;
+  text-align: center;
+  color: $background-text;
+}
+
+.bookings-list-block-title {
+  font-size: 16pt;
+  padding: 0 20pt 20pt 20pt;
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  color: $background-text;
+}
+
+.bookings-list-block-icon {
+  font-size: 16pt;
+  margin-right: 10pt;
+  padding-top: 5px;
+}
+
+.bookings-list-row {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 3px;
+  width: 100%;
+  display: inline-flex;
+  padding: 7px 10px;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  transition-duration: 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 1px 1px 5px rgba(203, 241, 228, 0.7);
+    transform: scale(1.01);
+    background-color: $select;
+    border-bottom: 3px solid $text;
+  }
+}
+
+.bookings-row-details {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1)
+}
+
+.bookings-row-details-second {
+  font-size: 10pt;
+  font-style: italic;
+}

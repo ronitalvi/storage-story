@@ -1,64 +1,74 @@
-<div class='message-show-heading'>
-  <div class='title-text text large bold'>
-    <%= @storage.name %>
-  </div>
-</div>
-<div class='container'>
-  <div class='row'>
-    <div class='col-sm-4'>
-      <div class='message-show-block text medium'>
-        Owner:
-      </div>
-      <div class='message-show-block text small'>
-        <%= @storage.user.name %>
-      </div>
-      <div class='message-show-block text medium'>
-        Booked on:
-      </div>
-      <div class='message-show-block text small'>
-        <ul>
-          <% @storage.bookings.each do |booking| %>
-            <li><%= booking.start_date %> - <%= booking.end_date %></li>
-          <% end %>
-        </ul>
-      </div>
-      <div class='message-show-block text small bold'>
-      </div>
-      <div class='text small'>
-      </div>
-      <div class='message-show-buttons'>
-        <%= link_to "Book", new_storage_booking_path(@storage.id), class: 'button button-primary'%>
-        <%# link_to 'message',  new_booking_message_path(@storage.user_id) %>
-        <%= link_to 'Edit', edit_storage_path(@storage), class: 'button button-secondary' %>
-        <button class='button button-secondary' id='mes-cancel'>Cancel</button>
-      </div>
-    </div>
-    <div class='col-sm-6'>
-      <div class='message-show-title text large'>
-        <%= @storage.name %>
-      </div>
-      <div class='message-show-block'>
-        <%= image_tag(@storage.photo, alt: "#{@storage.name}", class: 'storage-photo storage-photo-large') %>
-      </div>
-      <div class='message-show-block text medium'>
-        <%= @storage.description %>
-      </div>
-      <div class='message-show-block text medium'><strong>Area:</strong>
-        <%= @storage.sqm %>
-      </div>
-      <div class='message-show-block text medium'><strong>Price, ₪:</strong>
-        <%= @storage.price %>
-      </div>
-      <div class='message-show-block text medium'><strong>Location:</strong>
-        <%= @storage.address %>
-      </div>
-    </div>
-  </div>
-</div>
+<div class='new-booking-wrapper' id='booking-wrapper'>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 on" id='left'>
+        <div class="new-booking-details">
+          <div class='new-booking-block-title'>
+            <div class='new-booking-block-title-line'>
+              <%= @storage.name %>
+            </div>
+            <div class='new-booking-photo-block'>
+              <%= image_tag(@storage.photo, alt: "Storage photo", class: 'new-booking-storage-photo' ) %>
+            </div>
+          </div>
 
+          <div class='new-booking-section'>
+            <div class='new-booking-line reg'>OWNER</div>
+            <div class='new-booking-line dat'>
+              <%= @storage.user.name %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 on" id='right'>
+       <div class="new-booking-details">
+        <div class='new-booking-section'>
+          <div class='new-booking-line reg'>AREA</div>
+          <div class='new-booking-line dat'>
+            <%= @storage.sqm %>
+          </div>
+        </div>
+
+        <div class='new-booking-section'>
+          <div class='new-booking-line reg'>PRICE</div>
+          <div class='new-booking-line dat'>
+            <%= @storage.price %>
+          </div>
+        </div>
+
+        <div class='new-booking-section'>
+          <div class='new-booking-line reg'>DESCRIPTION</div>
+          <div class='new-booking-line dat'>
+            <%= @storage.description %>
+          </div>
+        </div>
+
+        <div class='new-booking-section'>
+          <div class='new-booking-line reg'>LOCAITON</div>
+          <div class='new-booking-line dat'>
+            <%= @storage.address %>
+          </div>
+        </div>
+        <div class='divider'></div>
+        <div class='new-booking-buttons'>
+          <div class='row'>
+            <%= link_to "Book", new_storage_booking_path(@storage.id), class: 'show-message-button
+                btn-primary nodecor'%>
+            <%= link_to 'Edit', edit_storage_path(@storage), class: 'show-message-button
+                btn-success nodecor' %>
+            <%= link_to 'Cancel', '/storages', class:'show-message-button
+                btn-light', id: 'cancel'%>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
 <script>
   const body = document.getElementsByTagName("BODY")[0]
   body.dataset.id = "<%= @storage.id %>"
   const title = document.title
 </script>
-

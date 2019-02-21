@@ -7,12 +7,12 @@
     </tr>
   </thead>
   <tbody>
-    <% if @my_storage_bookings.size == 0 %>
+    <% if @my_storages.size == 0 %>
       <tr class='table-row'>
         <td>Nothing booked yet</td>
       </tr>
     <% else %>
-      <% @my_storage_bookings.each do |booking| %>
+      <% @my_storages.each do |booking| %>
         <tr class='table-row booking-row' data-id='<%= booking.id %>'>
           <th scope="row"><%= booking.storage.name %></th>
           <td><%= booking.approved ? 'approved' : 'pending' %></td>

@@ -1,10 +1,10 @@
 class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @storages = Storage.all
-
+    
     @markers = @storages.map do |storage|
       {
         lng: storage.longitude,

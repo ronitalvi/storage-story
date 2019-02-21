@@ -4,7 +4,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 on" id='left'>
+      <div class="col-lg-6 col-md-6 on" id='left'>
         <div class="show-message-tails">
           <div class='show-message-block-title'>
             <div class='show-message-block-title-line'>
@@ -27,11 +27,11 @@
             </div>
             <div class='show-message-line regular'>status:</div>
             <% if @message.booking.approved %>
-            <div class='show-message-line'>
+            <div class='show-message-line center'>
               <div class='appr'>approved</div>
             </div>
             <% else %>
-            <div class='show-message-line'>
+            <div class='show-message-line center'>
               <div class='n-appr'>no approved</div>
             </div>
             <% end %>
@@ -43,21 +43,21 @@
   <%= button_to('Confirm', "/bookings/#{@message.booking_id}/approved",
 method: "get", class: 'show-message-button btn-success') %>
   <%= button_to('Refuse', "/messages/#{@message.id}",
-method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
+method: "delete", params:{book_id: @message.booking_id}, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
 btn-danger') %>
   <% else %>
   <%= button_to('Delete', "/messages/#{@message.id}",
-method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class:
+method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class:
 'show-message-button
 btn-danger') %>
   <% end %>
-  <button class='show-message-button
-btn-light' id='mes-cancel'>Cancel</button>
+  <%= link_to 'Cancel', 'javascript:history.back()', class:'show-message-button
+                btn-light', id: 'cancel'%>
 </div>
       </div>
 
 
-    <div class="col-lg-6" id='right'>
+    <div class="col-lg-6 col-md-6" id='right'>
       <div class="show-message-tails">
 
         <div class='show-message-storage-head'>

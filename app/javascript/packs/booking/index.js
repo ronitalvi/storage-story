@@ -6,17 +6,3 @@ Object(tBookRows).forEach((element) => {
     window.location.href = `/bookings/${element.dataset.id}`
   })
 })
-
-const bookButCancel = document.getElementById('book-cancel')
-
-if (bookButCancel !== null) {
-  bookButCancel.addEventListener('click', (event) => {
-    window.history.go(-1)
-  })
-}
-
-document.addEventListener('keyup', (event) => {
-  if (event.key === 'Escape') {
-    window.history.go(-1)
-  };
-})
