@@ -15,7 +15,7 @@ $text: rgb(155, 226, 212);
   &:hover{  text-decoration: none;}}
 
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
 #map {
   display: none;
 }
@@ -25,9 +25,23 @@ width: 100vw;
 }
 }
 
-@media (min-width: 721px) {
+@media (min-width: 769px) {
   .card-c {
-    width: 76vw;
+    width: 47%;
+  }
+  #map{
+    width:50%;
+
+  }
+}
+
+@media (min-width: 992) {
+  .card-c {
+    width: 55%;
+  }
+  #map{
+      width: 40%;
+
   }
 }
 

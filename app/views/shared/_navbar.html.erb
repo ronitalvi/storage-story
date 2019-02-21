@@ -41,7 +41,7 @@
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
     </div>
-
+ <% if user_signed_in? %>
     <!-- Dropdown list appearing on mobile only -->
     <div class="navbar-wagon-item hidden-md hidden-lg">
       <div class="dropdown">
@@ -76,5 +76,9 @@
         </ul>
       </div>
     </div>
+    <% else %>
+      <!-- Login link (when logged out) -->
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% end %>
   </div>
 </div>
