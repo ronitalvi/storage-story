@@ -1,10 +1,6 @@
-<%# @bookings = Booking.all %>
-<%# @my_rents = [] %>
-<%# @my_storages = [] %>
-
 <div class='bookings-list-wrapper'>
   <div class="bookings-list-header bookings-list-text-shadow">BOOKINGS</div>
-  <div class="container">
+  <div class="container" id='bookings-index-cont'>
     <div class="row">
       <div class="col-lg-6 on" id='left'>
         <div class="my-rents-messages">
@@ -47,12 +43,11 @@
             <% else %>
             <% @my_storages.each do |message| %>
             <div class='bookings-list-row' onresize='cropLongSubj()' data-id='<%= message.id %>'>
-
               <div class='bookings-list-row-details'>
                 <div class='bookings-list-row-first'>
                   <%= message.storage.name %>
                 </div>
-                <div class='bookings-list-row-second'>
+                <div class='bookings-row-details-second'>
                   by
                   <%= message.user.name %>
                   on
@@ -68,5 +63,4 @@
     </div>
     <div class='divider'></div>
   </div>
-</div>
 </div>

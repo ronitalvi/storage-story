@@ -9,10 +9,12 @@ $background-text:rgb(194, 194, 194);
 $select: rgb(203, 241, 228);
 $text: rgb(155, 226, 212);
 
-.wrapper {
-  background-color: $background;
-  height: 100vh;
+.bookings-list-text-shadow {
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2)
 }
+
+
+
 
 .message-header {
   font-size: 24pt;
@@ -64,9 +66,11 @@ $text: rgb(155, 226, 212);
     background-color: $select;
   }
 }
-
+.n-new {
+  border-left: 5px solid rgba(0,0,0,0);
+}
 .new {
-  border-left: 3px solid greenyellow;
+  border-left: 5px solid #28a745;
 }
 
 .message-details-first,

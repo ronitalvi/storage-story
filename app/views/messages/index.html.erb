@@ -1,33 +1,32 @@
-<div class='wrapper'>
-  <div class="header">MESSAGES</div>
-  <div class="container">
+<div class='bookings-list-wrapper'>
+  <div class="bookings-list-header bookings-list-text-shadow">MESSAGES</div>
+  <div class="container" id='bookings-index-cont'>
     <div class="row">
       <div class="col-lg-6 on" id='left'>
         <div class="my-rents-messages">
-          <div class='block-title'>
+          <div class='block-title bookings-list-text-shadow'>
             <i class="far fa-envelope block-icon"></i>
             <div class='block-title-line'>about my rents</div>
           </div>
-          <div class='message-list'>
-            <% puts "My user ID=#{current_user.id}".green %>
+          <div class='bookings-message-list'>
             <% if @my_rents.size == 0 %>
             <div>Nothing rented yet</div>
             <% else %>
             <% @my_rents.each do |message| %>
             <% if message.read %>
-            <div class='message-row' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+            <div class='bookings-list-row n-new' data-id='<%= message.id %>'>
               <% else %>
-              <div class='message-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+              <div class='bookings-list-row new' data-id='<%= message.id %>'>
                 <% end %>
-                <div class='message-details'>
-                  <div class='message-details-first'>
+                <div class='bookings-row-details'>
+                  <div class='bookings-row-details-first'>
                     <%= message.description %>
                   </div>
-                  <div class='message-details-second'>
+                  <div class='bookings-row-details-second'>
                     by
-                    <%= message.user.name %>
-                    on
-                    <%= message.created_at.strftime('%-d %b') %>
+                  <%= message.user.name %>
+                  on
+                  <%= message.created_at.strftime('%-d %b') == Date.today.strftime('%-d %b') ? 'today' : message.created_at.strftime('%-d %b') %>
                   </div>
                 </div>
               </div>
@@ -38,30 +37,29 @@
         </div>
         <div class="col-lg-6" id='right'>
           <div class="my-owns-messages">
-            <div class='block-title'>
+            <div class='block-title bookings-list-text-shadow'>
               <i class="far fa-envelope block-icon"></i>
               <div class='block-title-line'>about my storages</div>
             </div>
-            <div class='message-list'>
-              <% puts "My user ID=#{current_user.id}".green %>
+            <div class='bookings-message-list'>
               <% if @my_storages.size == 0 %>
               <div>Nothing rented yet</div>
               <% else %>
               <% @my_storages.each do |message| %>
               <% if message.read %>
-              <div class='message-row' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+              <div class='bookings-list-row n-new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
                 <% else %>
-                <div class='message-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+                <div class='bookings-list-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
                   <% end %>
-                  <div class='message-details'>
-                    <div class='message-details-first'>
+                  <div class='bookings-row-details'>
+                    <div class='bookings-row-details-first'>
                       <%= message.description %>
                     </div>
-                    <div class='message-details-second'>
+                    <div class='bookings-row-details-second'>
                       by
-                      <%= message.user.name %>
-                      on
-                      <%= message.created_at.strftime('%-d %b') %>
+                  <%= message.user.name %>
+                  on
+                  <%= message.created_at.strftime('%-d %b') == Date.today.strftime('%-d %b') ? 'today' : message.created_at.strftime('%-d %b') %>
                     </div>
                   </div>
                 </div>
