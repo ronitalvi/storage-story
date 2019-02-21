@@ -46,8 +46,9 @@ btn-danger') %>
           method: "delete", data: { confirm: 'Are you sure?', disable_with: 'loading...' }, class: 'show-message-button
 btn-danger') %>
         <% end %>
-        <button class='show-message-button
-btn-light' id='mes-cancel'>Cancel</button>
+        <br>
+        <%= link_to 'Cancel', 'javascript:history.back()', class:'show-message-button
+                btn-light', id: 'cancel'%>
         </div>
 
       </div>

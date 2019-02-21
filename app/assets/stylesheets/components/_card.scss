@@ -9,6 +9,16 @@ background-color: $background-text;
 height: 600vh;
 }
 
+.nodecor{
+  cursor:pointer;
+  &:hover{  text-decoration: none;}
+}
+
+#cancel{
+  background-color:$background-text;
+  color: $background;
+  &:hover{  text-decoration: none;}
+}
 
 .card-c{
   width: 55vw;
