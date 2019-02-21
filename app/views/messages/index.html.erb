@@ -14,9 +14,9 @@
             <% else %>
             <% @my_rents.each do |message| %>
             <% if message.read %>
-            <div class='bookings-list-row n-new' data-id='<%= message.id %>'>
+            <div class='message-row n-new' data-id='<%= message.id %>'>
               <% else %>
-              <div class='bookings-list-row new' data-id='<%= message.id %>'>
+              <div class='message-row new' data-id='<%= message.id %>'>
                 <% end %>
                 <div class='bookings-row-details'>
                   <div class='bookings-row-details-first'>
@@ -47,9 +47,9 @@
               <% else %>
               <% @my_storages.each do |message| %>
               <% if message.read %>
-              <div class='bookings-list-row n-new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+              <div class='message-row n-new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
                 <% else %>
-                <div class='bookings-list-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+                <div class='message-row new' onresize='cropLongSubj()' data-id='<%= message.id %>'>
                   <% end %>
                   <div class='bookings-row-details'>
                     <div class='bookings-row-details-first'>

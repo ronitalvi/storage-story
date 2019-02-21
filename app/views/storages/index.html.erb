@@ -3,7 +3,7 @@
 <div class="card-c">
 
   <% @storages.each do |storage| %>
-  <div class='col-sm-12 col-md-4 card' data-id='<%= storage.id %>' style='background-image: url(<%= storage.photo %>);'>
+  <div class='col-sm-12 col-md-12 col-lg-12  card' data-id='<%= storage.id %>' style='background-image: url(<%= storage.photo %>);'>
     <div class='card-details-wrapper card-sqm-wrapper'><div class='card-details-text'><%= storage.sqm %> m<sup>2</sup></div></div>
     <div class='card-details-wrapper card-price-wrapper'><div class='card-details-text'>₪ <%= storage.price %></div></div>
     <% if @reviews[storage.id].present?  %>
