@@ -1,10 +1,19 @@
 <div class="row">
+<<<<<<< HEAD
   <div class="col-sm-6 col-sm-offset-3">
 <h1>Reviews new</h1>
     <%= simple_form_for [@booking, @review] do |f| %>
   <%= f.input :description %>
     <%= f.collection_radio_buttons :stars, [[1,  '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>  <i class="fas fa-star"></i>
   <%= f.submit "add a review", class: "btn btn-primary" %>
+=======
+ <div class="col-sm-6 col-sm-offset-3">
+<h1>Reviews new</h1>
+   <%= simple_form_for [@booking, @review] do |f| %>
+ <%= f.input :description %>
+   <%= f.collection_radio_buttons :stars, [[1,  '1'] ,[2, '2'],[3, '3'],[4, '4'],[5, '5']], :first, :last %>  <i class="fas fa-star"></i>
+ <%= f.submit "add a review", class: "btn btn-primary" %>
+>>>>>>> 0eead3239c0ce8f0490cc9823a7cdc4ffb1fa996
 </div>
 </div>
 <% end %>

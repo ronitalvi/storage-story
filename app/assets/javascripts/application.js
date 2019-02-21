@@ -3,3 +3,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require hide
+//= require bootstrap
+
