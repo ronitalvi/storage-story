@@ -5,59 +5,28 @@
         <div class="new-booking-details">
           <div class='new-booking-block-title'>
             <div class='new-booking-block-title-line'>
-              <%= @storage.name %>
+              Please, choose the dates:
             </div>
-            <div class='new-booking-photo-block'>
-              <%= image_tag(@storage.photo, alt: "Storage photo", class: 'new-booking-storage-photo' ) %>
+
+            <div class='new-booking-buttons'>
+              <br>
+              <div class='row'>
+                <%= simple_form_for @booking, url: storage_bookings_path(@storage.id) do |f| %>
+                <div class="col-lg-6 offset-lg-6">
+
+                  <%= f.input :start_date, as: :date, html5: true, label: 'Start from', error: 'This field is mandatory' %>
+                </div>
+                <div class="col-lg-6 offset-lg-6">
+                  <%= f.input :end_date, as: :date, html5: true, label: 'End on', error: 'This field is mandatory' %>
+                </div>
+                <%= f.button :submit, class: 'show-message-button btn-primary' %>
+                <% end %>
+                <br>
+                <%= link_to 'Cancel', 'javascript:history.back()', class:'show-message-button
+                btn-light', id: 'cancel'%>
+              </div>
             </div>
-          </div>
-
-          <div class='new-booking-section'>
-            <div class='new-booking-line reg'>OWNER</div>
-            <div class='new-booking-line dat'>@storage.user.name</div>
-          </div>
-
-          <div class='new-booking-section'>
-            <div class='new-booking-line reg'>AREA</div>
-            <div class='new-booking-line dat'>@storage.sqm</div>
-          </div>
-
-          <div class='new-booking-section'>
-            <div class='new-booking-line reg'>PRICE</div>
-            <div class='new-booking-line dat'>@storage.price</div>
-          </div>
-
-          <div class='new-booking-section'>
-            <div class='new-booking-line reg'>DESCRIPTION</div>
-            <div class='new-booking-line dat'>@storage.description</div>
-          </div>
-
-          <div class='new-booking-section'>
-            <div class='new-booking-line reg'>LOCAITON</div>
-            <div class='new-booking-line dat'>@storage.address</div>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="col-lg-6 col-md-6 on" id='right'>
-
-        <div class='new-booking-buttons'>
-          <div class='row'>
-            <%= simple_form_for @booking, url: storage_bookings_path(@storage.id) do |f| %>
-            <div class="col-lg-6 offset-lg-6">
-              <%= f.input :start_date, as: :date, html5: true, label: 'Start from', error: 'This field is mandatory' %>
-            </div>
-            <div class="col-lg-6 offset-lg-6">
-              <%= f.input :end_date, as: :date, html5: true, label: 'End on', error: 'This field is mandatory' %>
-            </div>
-            <%= f.button :submit, class: 'show-message-button btn-primary' %>
-            <% end %>
-            <button class='show-message-button
-                btn-light' id='book-cancel'>Cancel</button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>

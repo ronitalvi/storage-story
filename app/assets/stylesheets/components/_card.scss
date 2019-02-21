@@ -4,6 +4,16 @@ $background-text:rgb(194, 194, 194);
 $select: rgb(203, 241, 228);
 $text: rgb(155, 226, 212);
 
+.nodecor{
+  cursor:pointer;
+  &:hover{  text-decoration: none;}
+}
+
+#cancel{
+  background-color:$background-text;
+  color: $background;
+  &:hover{  text-decoration: none;}}
+  
 
 @media (max-width: 720px) {
 #map {
