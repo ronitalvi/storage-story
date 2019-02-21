@@ -67,8 +67,10 @@
 
   <div class="row comment-section">
   <div class="col-sm-4 col-sm-offset-4">
+    <h3> Comment section </h3>
+    <hr>
     <% @storage.reviews.each do |review| %>
-    <p> <%= review.stars %></p>
+    <p> <%= review.stars %> <i class="fas fa-star"></i></p>
     <p><%= review.description %></p>
 <% if review.booking.user == current_user %>
  <%= link_to 'Destroy', booking_review_path(review.booking, review), method: :delete, data: { confirm: 'Are you sure?' } %>
