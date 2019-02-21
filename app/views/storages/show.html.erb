@@ -63,10 +63,26 @@
       </div>
       </div>
     </div>
+
+
+  <div class="row comment-section">
+  <div class="col-sm-4 col-sm-offset-4">
+    <% @storage.reviews.each do |review| %>
+    <p> <%= review.stars %></p>
+    <p><%= review.description %></p>
+<% if review.booking.user == current_user %>
+ <%= link_to 'Destroy', booking_review_path(review.booking, review), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+    <hr>
+    <% end %>
+  </div>
+</div>
+
   </div>
 </div>
 <br>
 <br>
+
 <script>
   const body = document.getElementsByTagName("BODY")[0]
   body.dataset.id = "<%= @storage.id %>"
