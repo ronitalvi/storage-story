@@ -57,19 +57,26 @@ $text: rgb(155, 226, 212);
   padding: 0 0 10pt 20pt;
 }
 
+.center{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
 .regular{
   font-size: 12pt;
   color: $background-text;
 }
 .data{
-  padding-left: 30pt;
+  // padding-left: 30pt;
+  text-align: center;
   font-size: 14pt;
   color:white;
 }
 
 .appr,
 .n-appr{
-margin-left:10pt;
+// margin-left:10pt;
 padding: 5pt 20pt;
 font-size: 14pt;
   border-radius: 3px;

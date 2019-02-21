@@ -1,7 +1,25 @@
+$background: rgb(233,235,238);
+$background-text:rgb(194, 194, 194);
+$select: rgb(203, 241, 228);
+$text: rgb(155, 226, 212);
+
+
+.profilee{
+  background-color: $background;
+}
+
+
+
+
+
 .banner-p{
+background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.6)),
+ asset-url('profile.png');
 width: 100%;
 height: 40vh;
-background-color: #E9DBC2;
+background-size: cover;
+color: white;
+
 border-radius: 5px;
 display: flex;
 flex-direction: column;
@@ -56,6 +74,15 @@ border-right: 1px solid rgba(220,224,244,0.4);
     font-weight: bold;
     border-right: 1px solid rgba(220,224,244,0.4);
     margin: auto;
+
+}
+.s-edit{
+
+    font-size: 14px;
+    font-weight: bold;
+    border-right: 1px solid rgba(220,224,244,0.4);
+    margin: auto;
+
 
 }
 

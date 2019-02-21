@@ -1,4 +1,4 @@
-<div>
+<div class="profilee">
   <div class="banner-p">
     <div class="banner-p-avatar ">
       <%=image_tag(current_user.photo, class: "avatar-large")%>
@@ -6,17 +6,23 @@
     <div class="banner-p-name"><h1><%= current_user.name %></h1></div>
   </div>
   <div class="container text-center">
-    <h1>Storges</h1>
+    <h1>Your Storges</h1>
     <% if current_user.storages.size > 0 %>
+    <div class="row">
     <% current_user.storages.each do |storage| %>
+     <div class='col-sm-12 col-md-12 ' >
     <div class="belongings">
       <div class="bb-photo"><%=image_tag(storage.photo, class: "s-photo")%></div>
-      <div class="s-name"><h3> <%= storage.name %></h3></div>
+      <div class="s-name"><h4> <%= storage.name %></h4></div>
       <div class="s-description"><p> <%= storage.description %></p></div>
-      <div class="s-sqm"><h3> <%= storage.sqm %>m <sup>2</sup> </h3></div>
-      <div class="s-price"><h3> ₪<%= storage.price %> </h3></div>
+      <div class="s-sqm"><h4> <%= storage.sqm %>m <sup>2</sup> </h4></div>
+      <div class="s-price"><h4> ₪<%= storage.price %> </h4></div>
+
+      <div class="s-edit"> <%= link_to 'edit', edit_storage_path(storage), class: "btn btn-primary btn-large" %> </div>
     </div>
+  </div>
     <% end -%>
+    </div>
   </div>
   <% else %>
   <h1>emty</h1>
@@ -24,6 +30,6 @@
   <div class="link">
     <%= link_to 'Add storage', new_storage_path, class: "btn btn-primary btn-large" %>
   </div>
-</div>
 <div class="emty-spaces"></div>
+</div>
 </div>

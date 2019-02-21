@@ -1,12 +1,21 @@
 class BookingsController < ApplicationController
-    before_action :set_booking
+  before_action :set_booking, only: %i[show edit update destroy]
+  before_action :authenticate_user!
+
   def index
     @bookings = Booking.all
-    @my_storage_bookings = []
+    # declare arrays
+    @my_rents = []
+    @my_storages = []
+    # fill arrays
     @bookings.each do |booking|
-      @my_storage_bookings << booking if booking.storage.user_id == current_user.id
+      # byebug
+      stor = booking.storage.user_id == current_user.id
+      rent = booking.user_id == current_user.id
+      # action = message.description.split(': ')[0]
+      @my_rents << booking if rent
+      @my_storages << booking if stor
     end
-    @my_rents = Booking.where(user: current_user)
   end
 
   def show
@@ -16,7 +25,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     puts "#{@booking.id} has been deleted".red
-    redirect_to '/bookings/', notice: 'Booking has been canceled.'
+    redirect_to(bookings_path)
   end
 
   def new
@@ -28,6 +37,13 @@ class BookingsController < ApplicationController
     booking = Booking.find(params[:id])
     booking.update(approved: true)
     puts "Booking #{booking.id}: approved".green
+    from_where = request.referrer.split('/')[3]
+    if from_where == 'bookings'
+      message = Message.where(booking_id: booking.id)[0]
+    else
+      message = Message.find(request.referrer.match(/(\d*$)/)[0])
+    end
+    message.destroy
     new_message = Message.new(
       booking_id: booking.id,
       user_id: booking.user_id,
@@ -35,11 +51,13 @@ class BookingsController < ApplicationController
     )
     new_message.save
     puts "Approval message #{new_message.id}: created".green
-    message = Message.find(request.referrer.match(/(\d*$)/)[0])
-    message.destroy
     puts "Request message #{message.id}: destroyed".red
     puts "Going back to #{messages_path}".blue
-    redirect_to messages_path
+    if from_where == 'bookings'
+      redirect_to(bookings_path)
+    else
+      redirect_to(messages_path)
+    end
   end
 
   def create
@@ -58,9 +76,15 @@ class BookingsController < ApplicationController
       render :new
     end
   end
-    private
+
+  private
 
   def set_booking
-    @booking = Booking.find(params[:id]) unless params[:id].nil?
+    @booking = Booking.find(params[:id]) if params[:id].to_i > 0
+    @booking = Booking.find(params[:id]) if params[:book_id].to_i > 0
+  end
+
+  def storage_params
+    params.require(:storage).permit(:address, :photo, :sqm, :price, :description, :name)
   end
 end

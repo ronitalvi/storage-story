@@ -1,18 +1,49 @@
 // card
-.card-c{
-  width: 95vw;
+$background: rgb(233,235,238);
+$background-text:rgb(194, 194, 194);
+$select: rgb(203, 241, 228);
+$text: rgb(155, 226, 212);
+
+.nodecor{
+  cursor:pointer;
+  &:hover{  text-decoration: none;}
 }
+
+#cancel{
+  background-color:$background-text;
+  color: $background;
+  &:hover{  text-decoration: none;}}
+  
+
+@media (max-width: 720px) {
+#map {
+  display: none;
+}
+
+.card-c{
+width: 100vw;
+}
+}
+
+@media (min-width: 721px) {
+  .card-c {
+    width: 55vw;
+  }
+}
+
+
+
 .card {
-  align-self: center;
-  margin: 20px;
+  margin: 22px;
   height: 200px;
-  border: 1px solid white;
+  border: 1px solid #cbf1e4;
   border-radius: 5px;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
   background-repeat: no-repeat;
   background-size: cover;
   transition-duration: 1s;
   filter: grayscale(75%);
+
   &:hover{
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.05);

@@ -1,5 +1,5 @@
 const messageId = document.getElementsByTagName('body')[0].dataset.id
-const mesButCancel = document.getElementById('mes-cancel')
+const mesButCancel = document.getElementById('cancel')
 
 if (mesButCancel !== null) {
   mesButCancel.addEventListener('click', (event) => {
