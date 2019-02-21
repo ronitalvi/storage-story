@@ -1,13 +1,8 @@
 // card
-$background: rgb(121, 118, 135);
+$background: rgb(233,235,238);
 $background-text:rgb(194, 194, 194);
 $select: rgb(203, 241, 228);
 $text: rgb(155, 226, 212);
-
-.arka{
-background-color: $background-text;
-height: 600vh;
-}
 
 .nodecor{
   cursor:pointer;
@@ -17,13 +12,27 @@ height: 600vh;
 #cancel{
   background-color:$background-text;
   color: $background;
-  &:hover{  text-decoration: none;}
+  &:hover{  text-decoration: none;}}
+  
+
+@media (max-width: 720px) {
+#map {
+  display: none;
 }
 
 .card-c{
-  width: 55vw;
-  background-color: #797687 ;
+width: 100vw;
 }
+}
+
+@media (min-width: 721px) {
+  .card-c {
+    width: 55vw;
+  }
+}
+
+
+
 .card {
   margin: 22px;
   height: 200px;
