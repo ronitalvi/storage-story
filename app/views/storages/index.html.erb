@@ -1,20 +1,17 @@
 <div class="card-c">
-  <% my_array = [] %>
   <% @storages.each do |storage| %>
   <div class='col-sm-12 col-md-4 card' data-id='<%= storage.id %>' style='background-image: url(<%= storage.photo %>);'>
     <div class='card-details-wrapper card-sqm-wrapper'><div class='card-details-text'><%= storage.sqm %> m<sup>2</sup></div></div>
     <div class='card-details-wrapper card-price-wrapper'><div class='card-details-text'>₪ <%= storage.price %></div></div>
-    <% storage.reviews.each do |review| %>
-    <% my_array << review.stars %>
+    <% if @reviews[storage.id].present?  %>
+    <div class='card-details-wrapper card-price-wrapper position-average'><div class='card-details-text'><%= @reviews[storage.id] %> <i class="fas fa-star"></i></div></div>
+    <% else %>
+    <div class='card-details-wrapper card-price-wrapper position-average'><div class='card-details-text'><p>No reviews yet !</p></div></div>
     <% end %>
-    <% average = my_array.sum / my_array.length %>
-    <div class='card-details-wrapper card-price-wrapper position-average'><div class='card-details-text'><%=average%> <i class="fas fa-star"></i></div></div>
     <div class='card-title-wrapper'><div class='card-title-text'><%= storage.name %></div></div>
   </div>
   <% end %>
 </div>
-<div
-  id="map"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
+<div id="map"
+data-markers="<%= @markers.to_json %>"
+data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>

@@ -4,6 +4,18 @@ class StoragesController < ApplicationController
 
   def index
     @storages = Storage.all
+    @reviews = {}
+    @storages.each do |el|
+     @reviews[el.id] = 0
+     sum = 0
+     i = 0
+     el.reviews.each do |rev|
+       sum += rev.stars
+       i += 1
+     end
+     @reviews[el.id] = sum / i unless i.zero?
+   end
+
     @markers = @storages.map do |storage|
       {
         lng: storage.longitude,
