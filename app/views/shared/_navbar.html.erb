@@ -9,25 +9,26 @@
       <div> <%= render 'shared/flashes' %></div>
       <% if user_signed_in? %>
       <!-- Links when logged in -->
-      <%= link_to "Storages", storages_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Bookings", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", messages_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "STORAGES", storages_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "BOOKINGS", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "MESSAGES", messages_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <%= image_tag "http://kitt.lewagon.com/placeholder/users/Filipe-p", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+
             <li>
+              <%= link_to  new_storage_path do %>
+              <i class="far fa-plus-square"></i>  <%= t("new_storage_booking", default: "ADD STORAGE") %>
+              <% end %>
+            </li>
+            <li>
+             <li>
               <%= link_to profile_path do %>
-              <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <i class="fa fa-user"></i> <%= t(".profile", default: "PROFILE") %>
               <% end %>
             </li>
-            <li>
-              <%= link_to "#" do %>
-              <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
-              <% end %>
-            </li>
-            <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
               <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
@@ -47,15 +48,26 @@
         <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
-            <%= link_to "#" do %>
-            <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <%= link_to bookings_path do %>
+            <i class="fa fa-user"></i> <%= t(".bookings", default: "BOOKINGS") %>
             <% end %>
           </li>
           <li>
-            <%= link_to "#" do %>
-            <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+            <%= link_to messages_path do %>
+            <i class="fas fa-envelope"></i>  <%= t(".messages", default: "MESSAGES") %>
             <% end %>
           </li>
+            <li>
+            <%= link_to storages_path do %>
+            <i class="fas fa-warehouse"></i>  <%= t(".storages", default: "STORAGES") %>
+            <% end %>
+          </li>
+          <li>
+
+              <%= link_to  new_storage_path do %>
+              <i class="far fa-plus-square"></i>  <%= t("new_storage_booking", default: "ADD STORAGE") %>
+              <% end %>
+            </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
             <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
