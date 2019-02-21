@@ -12,11 +12,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.booking = @booking
     if @review.save
-<<<<<<< HEAD
-      redirect_to booking_path(@booking) # i couldn't try because there was no booking view yet // not sure if it works
-=======
-      redirect_to storage_path(@booking.storage) # i couldn't try because there was no booking view yet // not sure if it works
->>>>>>> 10e1ca1f0fe055a76158ab653af8b2670f233ffc
+      redirect_to storage_path(@booking.storage)
     else
       render :new
     end
