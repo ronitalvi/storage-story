@@ -1,13 +1,72 @@
-I am <%= current_user.id %>
-<div class='container'>
-<div class='spacer'></div>
-  <div class='title-text text large bold'>
-    BOOKINGS
+<%# @bookings = Booking.all %>
+<%# @my_rents = [] %>
+<%# @my_storages = [] %>
+
+<div class='bookings-list-wrapper'>
+  <div class="bookings-list-header bookings-list-text-shadow">BOOKINGS</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 on" id='left'>
+        <div class="my-rents-messages">
+          <div class='bookings-list-block-title bookings-list-text-shadow'>
+            <i class="fas fa-archive bookings-list-block-icon"></i>
+            <div class='block-title-line'>I rent</div>
+          </div>
+          <div class='bookings-message-list'>
+            <% if @my_rents.size == 0 %>
+            <div>Nothing rented yet</div>
+            <% else %>
+            <% @my_rents.each do |message| %>
+            <div class='bookings-list-row' data-id='<%= message.id %>'>
+              <div class='bookings-row-details'>
+                <div class='bookings-row-details-first'>
+                  <%= message.storage.name %>
+                </div>
+                <div class='bookings-row-details-second'>
+                  by
+                  <%= message.user.name %>
+                  on
+                  <%= message.created_at.strftime('%-d %b') == Date.today.strftime('%-d %b') ? 'today' : message.created_at.strftime('%-d %b') %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" id='right'>
+        <div class="my-owns-messages">
+          <div class='bookings-list-block-title bookings-list-text-shadow'>
+            <i class="fas fa-archive bookings-list-block-icon"></i>
+            <div class='block-title-line'>I own</div>
+          </div>
+          <div class='bookings-message-list'>
+            <% if @my_storages.size == 0 %>
+            <div>Nothing rented yet</div>
+            <% else %>
+            <% @my_storages.each do |message| %>
+            <div class='bookings-list-row' onresize='cropLongSubj()' data-id='<%= message.id %>'>
+
+              <div class='bookings-list-row-details'>
+                <div class='bookings-list-row-first'>
+                  <%= message.storage.name %>
+                </div>
+                <div class='bookings-list-row-second'>
+                  by
+                  <%= message.user.name %>
+                  on
+                  <%= message.created_at.strftime('%-d %b') == Date.today.strftime('%-d %b') ? 'today' : message.created_at.strftime('%-d %b') %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='divider'></div>
+  </div>
 </div>
-  <div class='spacer'></div>
-  <strong>I am renting:</strong>
-  <%= render 'rents' %>
-  <div class='spacer'></div>
-  <strong>My storages:</strong>
-  <%= render 'owns' %>
 </div>

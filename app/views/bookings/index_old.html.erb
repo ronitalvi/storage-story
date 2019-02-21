@@ -1,0 +1,13 @@
+I am <%= current_user.id %>
+<div class='container'>
+<div class='spacer'></div>
+  <div class='title-text text large bold'>
+    BOOKINGS
+</div>
+  <div class='spacer'></div>
+  <strong>I am renting:</strong>
+  <%= render 'rents' %>
+  <div class='spacer'></div>
+  <strong>My storages:</strong>
+  <%= render 'owns' %>
+</div>
